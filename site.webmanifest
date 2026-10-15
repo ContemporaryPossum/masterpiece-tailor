@@ -1,0 +1,12 @@
+{
+  "name": "MasterPiece Tailor",
+  "short_name": "MasterPiece",
+  "description": "Bespoke suits, shirts and wedding wear in Kelana Jaya and Cyberjaya.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1322",
+  "theme_color": "#0a1322",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
