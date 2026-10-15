@@ -435,6 +435,7 @@ main { position: relative; z-index: 2; }
 .jacket { width: 100%; height: auto; max-height: 76svh; display: block; overflow: visible; color: var(--bone); }
 .jacket path, .jacket circle { fill: none; stroke: currentColor; }
 .j-out { stroke-width: 1.4; }
+.jacket .j-ghost { stroke: var(--bone); stroke-width: 1; stroke-dasharray: 2 6; opacity: 0.22; }
 .j-outline { color: var(--bone); transition: color 0.6s; }
 .j-m { stroke: var(--gold); stroke-width: 1; }
 .j-det { stroke-width: 1; opacity: 0.75; }
@@ -470,6 +471,25 @@ main { position: relative; z-index: 2; }
 }
 .craft__detail p.is-active { opacity: 1; transform: none; }
 
+/* Phones and tablets: one pinned screen. Heading, the drawing (fills the free space),
+   tappable step pills, then the step description. */
+.craft.is-pinned--m { padding: calc(var(--nav-h) + 14px) var(--gutter) 22px; }
+.craft.is-pinned--m .craft__inner { display: flex; flex-direction: column; align-items: stretch; gap: 14px; height: 100%; }
+.craft.is-pinned--m .craft__copy { display: contents; }
+.craft.is-pinned--m .craft__copy .h2 { order: 1; font-size: clamp(1.9rem, 7.6vw, 2.8rem); }
+.craft.is-pinned--m .craft__drawing { order: 2; flex: 1 1 0; min-height: 0; max-width: none; width: 100%; }
+.craft.is-pinned--m .jacket { width: 100%; height: 100%; max-height: none; }
+.craft.is-pinned--m .craft__steps { order: 3; margin: 0; border: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.craft.is-pinned--m .craft__steps button {
+  display: inline-flex; align-items: center; width: auto; min-height: 40px; padding: 0 14px;
+  font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600; line-height: 1;
+  color: var(--mute); border: 1px solid var(--line-strong); border-radius: 999px;
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+.craft.is-pinned--m .craft__steps button::before { display: none; }
+.craft.is-pinned--m .craft__steps .is-active button { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); }
+.craft.is-pinned--m .craft__detail { order: 4; min-height: 4.9em; font-size: 0.95rem; }
+
 /* ---------- Collection: sticky stack ---------- */
 .collection { padding-top: clamp(110px, 13vw, 170px); }
 .collection__head { max-width: var(--maxw); margin: 0 auto 48px; padding: 0 var(--gutter); }
@@ -483,6 +503,11 @@ main { position: relative; z-index: 2; }
   border: 1px solid var(--line); border-radius: var(--radius);
   box-shadow: 0 40px 80px -40px oklch(0.08 0.03 258 / 0.9);
   overflow: hidden; transform-origin: 50% 0%;
+  position: relative;
+}
+.stack__inner::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background: var(--ink); opacity: var(--dim, 0);
 }
 .stack__media { aspect-ratio: 4 / 5; overflow: hidden; border-radius: 2px; background: var(--ink); position: relative; }
 .stack__media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); }
@@ -504,6 +529,7 @@ main { position: relative; z-index: 2; }
 .price.is-expired { display: none; }
 
 .stack.is-stacked .stack__card {
+  position: relative; /* so every card's z-index applies, including the last (never pinned) one */
   height: 100vh; height: 100svh; margin: 0;
   display: flex; align-items: center;
   padding-top: calc(var(--nav-h) + 8px); padding-bottom: 24px;
@@ -860,6 +886,9 @@ main { position: relative; z-index: 2; }
   .footer__grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .footer__top { margin-left: 0; }
   .countdown b { margin-left: 4px; }
+  .voices__nav { gap: 10px; }
+  .voices__dots { gap: 4px; }
+  .voices__dots button { width: 22px; }
 }
 
 /* ---------- Motion preferences and fallbacks ---------- */

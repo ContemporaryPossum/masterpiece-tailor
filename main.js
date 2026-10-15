@@ -216,22 +216,47 @@
       var track = $('.heritage__track', sec);
       sec.classList.add('is-pan');
       var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
+
+      // Gold fill per year, mapped onto the pan's own progress (0..1). Each year starts
+      // filling as it enters from the right and is guaranteed to be fully gold before
+      // the pan ends, even the last ones that never reach the middle of the screen.
+      var years = $$('.h-year', sec).map(function (el) {
+        return { el: el, fill: el.querySelector('.h-year__fill'), s: 0, e: 1 };
+      });
+      function measureYears() {
+        var D = dist() || 1;
+        var vw = window.innerWidth;
+        var x0 = track.getBoundingClientRect().left;
+        years.forEach(function (y) {
+          var r = y.el.getBoundingClientRect();
+          var left = r.left - x0;                       // offset inside the track
+          var end = (left + r.width * 0.5 - vw * 0.5) / D;  // centred on screen
+          var start = (left - vw * 0.9) / D;             // entering from the right
+          y.e = Math.min(end, 0.9);
+          y.s = Math.min(start, y.e - 0.1);
+        });
+      }
+      function paintYears(p) {
+        years.forEach(function (y) {
+          var f = clamp((p - y.s) / (y.e - y.s), 0, 1);
+          y.fill.style.clipPath = 'inset(0 ' + ((1 - f) * 100).toFixed(2) + '% 0 0)';
+        });
+      }
+
       var pan = gsap.to(track, {
         x: function () { return -dist(); }, ease: 'none',
+        onUpdate: function () { paintYears(this.progress()); },
         scrollTrigger: {
           trigger: sec, start: 'top top', end: function () { return '+=' + dist(); },
-          pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true, refreshPriority: 30
+          pin: true, scrub: 1, anticipatePin: 1, invalidateOnRefresh: true, refreshPriority: 30,
+          onRefresh: function () { measureYears(); paintYears(pan ? pan.progress() : 0); }
         }
       });
+      measureYears();
+      paintYears(0);
       gsap.to('.heritage__progress span', {
         scaleX: 1, ease: 'none',
         scrollTrigger: { trigger: sec, start: 'top top', end: function () { return '+=' + dist(); }, scrub: true, invalidateOnRefresh: true, refreshPriority: 29 }
-      });
-      $$('.h-year__fill', sec).forEach(function (f) {
-        gsap.fromTo(f, { clipPath: 'inset(0 100% 0 0)' }, {
-          clipPath: 'inset(0 0% 0 0)', ease: 'none',
-          scrollTrigger: { trigger: f.parentNode, containerAnimation: pan, start: 'left 88%', end: 'center 50%', scrub: true }
-        });
       });
       $$('.h-panel:not(.h-panel--intro)', sec).forEach(function (p) {
         gsap.from(p.querySelectorAll('.h3, p:not(.h-year), li'), {
@@ -239,7 +264,10 @@
           scrollTrigger: { trigger: p, containerAnimation: pan, start: 'left 78%', toggleActions: 'play none none reverse' }
         });
       });
-      return function () { sec.classList.remove('is-pan'); };
+      return function () {
+        sec.classList.remove('is-pan');
+        years.forEach(function (y) { y.fill.style.clipPath = ''; });
+      };
     });
     mm.add(mobileMotion, function () {
       $$('.h-year__fill').forEach(function (f) {
@@ -367,6 +395,7 @@
       .to('.j-chalk', { opacity: 0, duration: 0.3 }, 4)
       .to('.j-measure', { opacity: 0, duration: 0.3 }, 4)
       .to('.j-outline', { color: '#d6b570', duration: 0.4 }, 4)
+      .to('.j-ghost', { opacity: 0, duration: 0.3 }, 4)
       .to('.j-btn', { scale: 1, duration: 0.35, stagger: 0.04, ease: 'power3.out' }, 4.1)
       .to('.j-hang', { strokeDashoffset: 0, duration: 0.4 }, 4.2)
       .to({}, { duration: 0.45 }, 4.6);
@@ -390,13 +419,16 @@
         });
         return function () { sec.classList.remove('is-pinned'); st = null; };
       });
+      // Phones and tablets: the section holds still (pinned) while scrolling builds the
+      // jacket; the step pills jump straight to a stage; the page moves on once it's finished.
       mm.add(mobileMotion, function () {
+        sec.classList.add('is-pinned', 'is-pinned--m');
         tl.progress(0);
         st = ScrollTrigger.create({
-          trigger: sec, start: 'top 70%', end: 'bottom 55%', scrub: 0.6, animation: tl,
-          onUpdate: function () { setStep(stepFromTime(tl.time())); }
+          trigger: sec, start: 'top top', end: function () { return '+=' + Math.round(window.innerHeight * 2.6); },
+          pin: true, scrub: 0.6, anticipatePin: 1, animation: tl, invalidateOnRefresh: true, refreshPriority: 20
         });
-        return function () { st = null; };
+        return function () { sec.classList.remove('is-pinned', 'is-pinned--m'); st = null; };
       });
     }
 
@@ -436,8 +468,10 @@
           trigger: card, start: 'top top', endTrigger: cards[cards.length - 1], end: 'top top',
           pin: true, pinSpacing: false, anticipatePin: 1, invalidateOnRefresh: true, refreshPriority: 10 - i
         });
+        // Recede by scaling and darkening (an opaque overlay), never by transparency,
+        // so the card underneath can't bleed through
         gsap.to(card.querySelector('.stack__inner'), {
-          scale: 0.9, opacity: 0.3, ease: 'none',
+          scale: 0.92, '--dim': 0.62, ease: 'none',
           scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top top', scrub: true, invalidateOnRefresh: true }
         });
       });

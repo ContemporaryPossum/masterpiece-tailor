@@ -64,7 +64,10 @@
 
   /* Screen-reader table so every chart's numbers are reachable without the visual. */
   function srTable(container, caption, headers, rows) {
-    var t = html('table', 'sr-only', container);
+    // Wrap rather than hide the table itself: tables refuse to shrink below their
+    // content width, which would widen the page on phones.
+    var wrap = html('div', 'sr-only', container);
+    var t = html('table', null, wrap);
     html('caption', null, t, caption);
     var thead = html('thead', null, t);
     var hr = html('tr', null, thead);
