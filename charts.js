@@ -135,6 +135,16 @@
     }
     this.str = str;
   };
+  /* Park every digit at 0 (keeping separators) so a later set() rolls up to the value */
+  NumberFlow.prototype.zero = function () {
+    (this.cols || []).forEach(function (c) {
+      if (!c) return;
+      c.style.transition = 'none';
+      c.style.transform = 'translateY(0%)';
+    });
+    void this.el.offsetWidth;
+    this.str = this.str ? this.str.replace(/\d/g, '0') : this.str;
+  };
 
   /* ------------------------------------------------------------------ */
   /* RingChart  (RingChart + Ring + RingCenter + Legend)                 */
@@ -539,10 +549,128 @@
     return { play: play };
   }
 
+  /* ------------------------------------------------------------------ */
+  /* SpanChart: consecutive date ranges on one axis (a timeline bar),    */
+  /* with Grid ticks, grow-in animation and ChartTooltip on hover        */
+  /* ------------------------------------------------------------------ */
+  function SpanChart(container, opts) {
+    var o = Object.assign({ height: 132, barHeight: 16, gap: 4, ticks: [], tickLabel: function (t) { return String(t); } }, opts);
+    container.classList.add('bk', 'bk-span');
+    var plot = html('div', 'bk-span__plot', container);
+    var tip = html('div', 'bk-tooltip', container);
+    tip.setAttribute('aria-hidden', 'true');
+    var played = false;
+    var geom = null;
+    var hovered = null;
+
+    srTable(container, o.ariaLabel || 'Timeline', ['Period', 'From', 'To'],
+      o.segments.map(function (s) { return [s.label, s.fromLabel || String(s.from), s.toLabel || String(s.to)]; }));
+
+    function render() {
+      var W = Math.max(260, Math.round(container.clientWidth));
+      var H = o.height;
+      var m = { top: 34, right: 12, bottom: 30, left: 12 };
+      var iw = W - m.left - m.right;
+      var x = function (v) { return m.left + ((v - o.min) / (o.max - o.min)) * iw; };
+      plot.textContent = '';
+      var root = svg('svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': o.ariaLabel || '', tabindex: '0' }, plot);
+      var by = m.top + 18;
+
+      // Grid: tick marks and year labels
+      var gridG = svg('g', { 'class': 'bk-grid' }, root);
+      svg('line', { x1: m.left, x2: W - m.right, y1: by + o.barHeight / 2, y2: by + o.barHeight / 2, stroke: chartCssVars.grid }, gridG);
+      o.ticks.forEach(function (t) {
+        svg('line', { x1: x(t), x2: x(t), y1: by - 8, y2: by + o.barHeight + 8, stroke: chartCssVars.grid, 'stroke-dasharray': '3 4' }, gridG);
+        svg('text', { x: x(t), y: H - 8, 'text-anchor': 'middle', 'class': 'bk-axis' }, gridG).textContent = o.tickLabel(t);
+      });
+
+      var segs = o.segments.map(function (s, i) {
+        var x0 = x(s.from) + (i ? o.gap / 2 : 0);
+        var x1 = x(s.to) - (i < o.segments.length - 1 ? o.gap / 2 : 0);
+        var g = svg('g', { 'class': 'bk-span__seg' }, root);
+        var rect = svg('rect', { x: x0, y: by, width: played ? x1 - x0 : 0, height: o.barHeight, rx: o.barHeight / 2, fill: s.color || seriesColor(i) }, g);
+        var label = svg('text', { x: x0, y: by - 12, 'class': 'bk-span__label' }, g);
+        label.textContent = s.short || s.label;
+        if (!played) label.setAttribute('opacity', 0);
+        return { s: s, g: g, rect: rect, label: label, x0: x0, x1: x1 };
+      });
+      geom = { root: root, segs: segs, by: by };
+
+      root.addEventListener('pointermove', function (e) {
+        var r = root.getBoundingClientRect();
+        var px = e.clientX - r.left;
+        var idx = null;
+        segs.forEach(function (sg, k) { if (px >= sg.x0 - 2 && px <= sg.x1 + 2) idx = k; });
+        setHover(idx);
+      });
+      root.addEventListener('pointerleave', function () { setHover(null); });
+      root.addEventListener('focus', function () { setHover(0); });
+      root.addEventListener('blur', function () { setHover(null); });
+      root.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        e.preventDefault();
+        var n = segs.length;
+        setHover(hovered == null ? 0 : (hovered + (e.key === 'ArrowRight' ? 1 : n - 1)) % n);
+      });
+      var keep = hovered; hovered = null;
+      if (keep != null) setHover(keep);
+    }
+
+    function setHover(i) {
+      if (i === hovered || !geom) return;
+      hovered = i;
+      geom.segs.forEach(function (sg, k) { sg.g.style.opacity = (i == null || i === k) ? '1' : '0.3'; });
+      if (i == null) { tip.classList.remove('is-on'); return; }
+      var sg = geom.segs[i];
+      tip.textContent = '';
+      html('div', 'bk-tooltip__title', tip, sg.s.label);
+      var row = html('div', 'bk-tooltip__row', tip);
+      var dot = html('span', 'bk-tooltip__dot', row);
+      dot.style.background = sg.s.color || seriesColor(i);
+      html('span', 'bk-tooltip__label', row, (sg.s.fromLabel || sg.s.from) + ' to ' + (sg.s.toLabel || sg.s.to));
+      html('span', 'bk-tooltip__value', row, sg.s.valueLabel || '');
+      var cw = container.clientWidth;
+      var tw = tip.offsetWidth || 200;
+      var tx = Math.max(0, Math.min(cw - tw, (sg.x0 + sg.x1) / 2 - tw / 2));
+      var ty = geom.by + o.barHeight + 16;
+      tip.style.transform = 'translate(' + Math.round(tx) + 'px,' + Math.round(ty) + 'px)';
+      tip.classList.add('is-on');
+    }
+
+    function play() {
+      if (played || !geom) return;
+      played = true;
+      geom.segs.forEach(function (sg, k) {
+        if (canAnimate()) {
+          global.gsap.to(sg.rect, { attr: { width: Math.max(0, sg.x1 - sg.x0) }, duration: DURATION * 1.2, ease: 'expo.out', delay: k * 0.5 });
+          global.gsap.to(sg.label, { attr: { opacity: 1 }, duration: 0.5, delay: 0.2 + k * 0.5 });
+        } else {
+          sg.rect.setAttribute('width', Math.max(0, sg.x1 - sg.x0));
+          sg.label.setAttribute('opacity', 1);
+        }
+      });
+    }
+
+    render();
+    var lastW = container.clientWidth;
+    var timer = null;
+    if (global.ResizeObserver) {
+      new ResizeObserver(function () {
+        var w = container.clientWidth;
+        if (Math.abs(w - lastW) < 2) return;
+        lastW = w;
+        clearTimeout(timer);
+        timer = setTimeout(render, 120);
+      }).observe(container);
+    }
+    return { play: play, setHover: setHover };
+  }
+
   global.Bklit = {
     RingChart: RingChart,
     BarChart: BarChart,
     GaugeChart: GaugeChart,
+    SpanChart: SpanChart,
     NumberFlow: NumberFlow,
     chartCssVars: chartCssVars
   };
