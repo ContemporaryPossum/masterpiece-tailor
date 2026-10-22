@@ -133,7 +133,7 @@
     for (var i = 0; i < K; i++) {
       var h = hash(i);
       var a = 0.06 + h * 0.12;
-      var col = '214, 181, 112';
+      var col = '238, 196, 104'; // MasterPiece gold, softened for thin lines
       if (i % 9 === 4) { a = 0.3; }
       if (i % 13 === 7) { col = '236, 230, 214'; a = 0.16; }
       colors.push('rgba(' + col + ',' + a.toFixed(3) + ')');

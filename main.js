@@ -29,6 +29,7 @@
   var HOURS = { 0: [11, 20], 1: [11, 20], 2: [11, 20], 3: [11, 20], 4: [11, 20], 5: [11, 19], 6: null };
   var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var marqueeTween = null;
+  var trustTween = null;
 
   /* ======================================================================
      Features that work with or without GSAP
@@ -124,22 +125,22 @@
     var seen = false;
     try { seen = sessionStorage.getItem('mp-seen') === '1'; sessionStorage.setItem('mp-seen', '1'); } catch (e) { /* storage blocked */ }
 
+    // The crown traces its outline, then fills with gold
     var paths = $$('.pl-draw', pre);
     paths.forEach(function (p) {
-      var L = p.getTotalLength();
+      var L = Math.ceil(p.getTotalLength()) + 1;
       p.style.strokeDasharray = L + ' ' + L;
       p.style.strokeDashoffset = L;
+      p.style.fillOpacity = 0;
     });
-    var fill = $('.pl-fill', pre);
     var countEl = $('[data-count]', pre);
     var counter = { v: 0 };
     function paint() { countEl.textContent = Math.round(counter.v); }
-    gsap.set(fill, { opacity: 0, scale: 0.4, transformOrigin: '50% 60%' });
-    gsap.from('.preloader__word', { opacity: 0, y: 8, duration: 0.8, ease: 'power3.out', delay: 0.2 });
+    gsap.from('.preloader__word', { opacity: 0, y: 10, duration: 0.9, ease: 'power3.out', delay: seen ? 0.1 : 0.5 });
 
     var intro = gsap.timeline();
-    intro.to(paths, { strokeDashoffset: 0, duration: seen ? 0.5 : 1.2, ease: 'power2.inOut', stagger: 0.12 }, 0)
-      .to(fill, { opacity: 1, scale: 1, duration: 0.45, ease: 'power3.out' }, seen ? 0.35 : 1)
+    intro.to(paths, { strokeDashoffset: 0, duration: seen ? 0.6 : 1.4, ease: 'power2.inOut' }, 0)
+      .to(paths, { fillOpacity: 1, duration: 0.5, ease: 'power2.out' }, seen ? 0.4 : 1.1)
       .to(counter, { v: 86, duration: seen ? 0.6 : 1.4, ease: 'power1.out', onUpdate: paint }, 0);
     var introDone = new Promise(function (r) { intro.eventCallback('onComplete', r); });
     var ready = Promise.all([fontsReady, imgReady(heroImg), introDone]);
@@ -158,10 +159,7 @@
      Hero + trust bar
      ====================================================================== */
   function prepareHero() {
-    var ratingEl = $('.trust__rating');
-    var rating = (ratingEl && window.Bklit) ? new Bklit.NumberFlow(ratingEl, { value: 4.9, decimals: 1, locale: false }) : null;
     if (reduce) return null;
-    if (rating) rating.zero();
 
     var title = $('.hero__title');
     var tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
@@ -176,13 +174,12 @@
     gsap.set('[data-hero-fade]', { y: 22, opacity: 0 });
     gsap.set('.hero__img', { scale: 1.32 });
     gsap.set('.nav > *', { y: -14, opacity: 0 });
-    gsap.set('.trust__list li', { y: 18, opacity: 0 });
+    gsap.set('.trust__crawl', { y: 18, opacity: 0 });
     tl.to('.hero__curtain', { scaleY: 0, duration: 1.35, ease: 'expo.inOut' }, 0.05)
       .to('.hero__img', { scale: 1, duration: 1.9, ease: 'power3.out' }, 0.1)
       .to('[data-hero-fade]', { y: 0, opacity: 1, duration: 0.95, stagger: 0.1 }, 0.5)
       .to('.nav > *', { y: 0, opacity: 1, duration: 0.8, stagger: 0.06, clearProps: 'transform' }, 0.35)
-      .to('.trust__list li', { y: 0, opacity: 1, duration: 0.8, stagger: 0.08 }, 0.9)
-      .add(function () { if (rating) rating.set(4.9); }, 1.1);
+      .to('.trust__crawl', { y: 0, opacity: 1, duration: 0.9 }, 0.9);
     if (!$('.preloader')) tl.play();
     return tl;
   }
@@ -202,6 +199,7 @@
       gsap.to('.hero__frame', { scale: 0.93, ease: 'none', scrollTrigger: heroST });
     }
 
+    initTrust();
     initSplitHeadings();
     initReveals();
     initIdentity();
@@ -224,6 +222,28 @@
     ScrollTrigger.refresh();
   }
 
+  /* ---------- Quick trust bar: one continuous crawl line ---------- */
+  function initTrust() {
+    var wrap = $('[data-crawl]');
+    if (!wrap) return;
+    var track = $('.trust__track', wrap);
+    // Two extra copies so the line never shows a gap on wide screens
+    var items = $$('li', track);
+    for (var n = 0; n < 2; n++) {
+      items.forEach(function (li) {
+        var c = li.cloneNode(true);
+        c.setAttribute('aria-hidden', 'true');
+        track.appendChild(c);
+      });
+    }
+    if (reduce) return;
+    trustTween = gsap.to(track, { xPercent: -100 / 3, ease: 'none', duration: 30, repeat: -1 });
+    ScrollTrigger.create({
+      trigger: wrap, start: 'top bottom', end: 'bottom top',
+      onToggle: function (self) { if (self.isActive) trustTween.play(); else trustTween.pause(); }
+    });
+  }
+
   /* ---------- Section headings: masked line reveals ---------- */
   function initSplitHeadings() {
     if (reduce) return;
@@ -241,7 +261,7 @@
         gsap.from(el, { y: 40, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
       }
     });
-    $$('.experience .lede, .legacy .lede, .collection .lede, .voices .lede, .cta .lede, .heritage .lede, .cta .eyebrow, .cta .tagline').forEach(function (el) {
+    $$('.legacy .lede, .collection .lede, .voices .lede, .cta .lede, .heritage .lede, .cta .eyebrow, .cta .tagline').forEach(function (el) {
       gsap.from(el, { y: 20, opacity: 0, duration: 0.9, ease: 'power3.out', delay: 0.2, scrollTrigger: { trigger: el, start: 'top 92%', once: true } });
     });
   }
@@ -276,20 +296,48 @@
     }
   }
 
-  /* ---------- 3 Experience: the swatch book fans open ---------- */
+  /* ---------- 3 Experience: numbered steps drive the photo and the gold flow line ---------- */
   function initExperience() {
-    var swatches = $$('.swatch');
-    if (!swatches.length || reduce) return;
-    swatches.forEach(function (s, i) {
-      var target = parseFloat(getComputedStyle(s).getPropertyValue('--r')) || 0;
-      gsap.fromTo(s, { rotation: (i - 2) * 1.5, y: 40 - i * 6 }, {
-        rotation: target, y: 0, ease: 'none',
-        scrollTrigger: { trigger: '.swatches', start: 'top 85%', end: 'center 45%', scrub: 0.8 }
+    var steps = $$('.step');
+    var imgs = $$('.xstage__img');
+    var list = $('[data-steps]');
+    if (!steps.length) return;
+    var current = 0;
+
+    function setActive(i) {
+      if (i === current) return;
+      var prev = current;
+      current = i;
+      steps.forEach(function (s, k) {
+        s.classList.toggle('is-active', k === i);
+        s.classList.toggle('is-done', k < i);
       });
-      if (finePointer) {
-        s.addEventListener('pointerenter', function () { gsap.to(s, { y: -22, duration: 0.4, ease: 'power3.out', overwrite: 'auto' }); });
-        s.addEventListener('pointerleave', function () { gsap.to(s, { y: 0, duration: 0.5, ease: 'power3.out', overwrite: 'auto' }); });
+      imgs.forEach(function (im, k) { im.classList.toggle('is-active', k === i); });
+      if (!reduce && imgs[i]) {
+        gsap.to(imgs[prev], { autoAlpha: 0, duration: 0.7, ease: 'power2.inOut', overwrite: true });
+        gsap.fromTo(imgs[i], { autoAlpha: 0, scale: 1.05 }, { autoAlpha: 1, scale: 1, duration: 1, ease: 'power3.out', overwrite: true });
       }
+    }
+
+    if (reduce) {
+      if (list) list.style.setProperty('--flow', 1);
+    } else {
+      gsap.set(imgs, { autoAlpha: 0 });
+      gsap.set(imgs[0], { autoAlpha: 1 });
+      if (list) {
+        gsap.fromTo(list, { '--flow': 0 }, {
+          '--flow': 1, ease: 'none',
+          scrollTrigger: { trigger: list, start: 'top 62%', end: 'bottom 62%', scrub: true }
+        });
+      }
+      gsap.from('.xstage', { y: 60, opacity: 0, duration: 1.1, ease: 'power3.out', scrollTrigger: { trigger: '.xstage', start: 'top 90%', once: true } });
+      gsap.from('.experience__lead', { y: 24, opacity: 0, duration: 1, ease: 'power3.out', delay: 0.15, scrollTrigger: { trigger: '.experience__lead', start: 'top 90%', once: true } });
+    }
+    steps.forEach(function (s, i) {
+      ScrollTrigger.create({
+        trigger: s, start: 'top 62%', end: 'bottom 62%',
+        onToggle: function (self) { if (self.isActive) setActive(i); }
+      });
     });
   }
 
@@ -333,7 +381,7 @@
       .to('.j-chalk', { opacity: 0, duration: 0.25 }, 2)
       .to('.j-measure', { opacity: 0, duration: 0.25 }, 2)
       .to('.j-ghost', { opacity: 0, duration: 0.25 }, 2)
-      .to('.j-outline', { color: '#d6b570', duration: 0.35 }, 2)
+      .to('.j-outline', { color: '#F4C251', duration: 0.35 }, 2)
       .to('.j-btn', { scale: 1, duration: 0.3, stagger: 0.04, ease: 'power3.out' }, 2.1)
       .to('.j-hang', { strokeDashoffset: 0, duration: 0.35 }, 2.2)
       .to({}, { duration: 0.4 }, 2.6);
@@ -695,13 +743,13 @@
   }
 
   /* ---------- Footer wordmark ---------- */
+  /* The MasterPiece wordmark unveils left to right as the footer arrives */
   function initFooter() {
     var word = $('.footer__word');
-    if (!word || reduce || !hasSplit) return;
-    var s = padMasks(SplitText.create(word, { type: 'chars', mask: 'chars' }));
-    gsap.from(s.chars, {
-      yPercent: 110, ease: 'none', stagger: 0.05,
-      scrollTrigger: { trigger: word, start: 'top 100%', end: 'bottom 80%', scrub: 0.6 }
+    if (!word || reduce) return;
+    gsap.fromTo(word, { clipPath: 'inset(0 100% 0 0)', y: 30 }, {
+      clipPath: 'inset(0 0% 0 0)', y: 0, ease: 'none',
+      scrollTrigger: { trigger: word, start: 'top 98%', end: 'bottom 75%', scrub: 0.6 }
     });
   }
 
@@ -768,7 +816,9 @@
       var v = app.lenis ? app.lenis.velocity : 0;
       smooth += (v - smooth) * 0.15;
       if (app.lenis && app.lenis.direction) dir = app.lenis.direction;
-      if (marqueeTween) marqueeTween.timeScale(dir * (1 + Math.min(Math.abs(smooth) * 0.09, 5)));
+      var speed = dir * (1 + Math.min(Math.abs(smooth) * 0.09, 5));
+      if (marqueeTween) marqueeTween.timeScale(speed);
+      if (trustTween) trustTween.timeScale(speed);
       if (skew) skew(clamp(-smooth * 0.25, -7, 7));
       if (window.Threads) Threads.kick(smooth);
     });

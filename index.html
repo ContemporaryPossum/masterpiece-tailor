@@ -14,7 +14,7 @@
   <meta property="og:title" content="MasterPiece Tailor | Make Powerful Impressions">
   <meta property="og:description" content="Luxury tailored clothing, crafted exclusively for you. Bespoke Within Reach.">
   <meta property="og:url" content="https://www.masterpiecetailor.my/">
-  <meta property="og:image" content="https://primary.jwwb.nl/public/i/p/o/temp-uxippqujcmqxuvnsntof/3801889901.jpg?enable-io=true&amp;width=800">
+  <meta property="og:image" content="https://www.masterpiecetailor.my/hero-suit.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="preconnect" href="https://primary.jwwb.nl">
+  <link rel="preload" as="image" href="hero-suit.jpg">
   <!-- Brand fonts are Optima and Canva Sans. Belleza and Figtree are the closest free web
        stand-ins; devices with Optima installed (most Apple devices) show the real thing. -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Belleza&amp;family=Figtree:ital,wght@0,400..700;1,400..700&amp;display=swap">
@@ -50,7 +50,8 @@
     "foundingDate": "1998",
     "url": "https://www.masterpiecetailor.my/",
     "email": "ask@masterpiecetailor.my",
-    "image": "https://primary.jwwb.nl/public/i/p/o/temp-uxippqujcmqxuvnsntof/3801889901.jpg?enable-io=true&width=800",
+    "image": "https://www.masterpiecetailor.my/hero-suit.jpg",
+    "logo": "https://www.masterpiecetailor.my/logo.svg",
     "priceRange": "RM160 - RM1,100+",
     "sameAs": [
       "https://www.instagram.com/masterpiecetailor.my/",
@@ -102,12 +103,9 @@
 <body>
   <!-- Shared vector symbols -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <symbol id="crown" viewBox="0 0 64 44">
-      <path d="M3 4 20.5 40 32 15 43.5 40 61 4" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="miter" stroke-miterlimit="12"/>
-      <path d="M11.5 9.5 20.5 29 26.2 16.8" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <path d="M52.5 9.5 43.5 29 37.8 16.8" fill="none" stroke="currentColor" stroke-width="1.6"/>
-      <path d="M32 23.5 36.8 34 32 34Z" fill="currentColor"/>
-      <path d="M32 23.5 27.2 34H32" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <!-- The MasterPiece crown, traced from the client's logo artwork -->
+    <symbol id="crown" viewBox="68.4 37.8 55.2 37.6">
+      <path fill="currentColor" fill-rule="evenodd" d="M102.89 55.26L105.08 59.05L106.44 61.4L108.65 65.23L109.32 66.4L114.4 75.2L123.37 41.75L108.07 56.22L109.43 58.58L118.39 50.1L113.5 68.34L112.1 65.9L111.42 64.73L108.42 59.53L107.06 57.18L104.34 52.46L103.66 51.29L97.53 40.67L96 38.02L94.47 40.67L85.63 55.97L87.61 57.84L96 43.31L102.22 54.09L102.89 55.26L102.89 55.26ZM115.18 55.49L112.92 63.92L110.57 59.85L115.18 55.49L115.18 55.49ZM96 46.73L102.93 58.73L96 65.28L96 46.73L96 46.73ZM81.43 59.85L76.82 55.49L79.08 63.92L81.43 59.85L81.43 59.85ZM81.24 53.68L82.22 54.61L84.94 57.18L86.92 59.05L90 61.96L90.98 62.89L96 67.64L104.07 60L105.43 62.36L97.92 69.46L96 71.28L94.07 69.46L88.66 64.34L87.68 63.41L85.56 61.4L83.58 59.53L80.92 57.02L79.94 56.09L73.61 50.1L78.49 68.34L82.88 60.74L84.86 62.61L77.59 75.2L68.63 41.75L81.24 53.68Z"/>
     </symbol>
   </svg>
 
@@ -117,16 +115,13 @@
   <div class="vignette" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
 
-  <!-- Preloader: the crown draws itself while fonts and the hero photo load -->
+  <!-- Preloader: the crown traces itself and fills while fonts and the hero photo load -->
   <div class="preloader" aria-hidden="true">
     <div class="preloader__inner">
-      <svg class="preloader__crown" viewBox="0 0 64 44">
-        <path class="pl-draw" d="M3 4 20.5 40 32 15 43.5 40 61 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="miter" stroke-miterlimit="12"/>
-        <path class="pl-draw" d="M11.5 9.5 20.5 29 26.2 16.8" fill="none" stroke="currentColor" stroke-width="1.1"/>
-        <path class="pl-draw" d="M52.5 9.5 43.5 29 37.8 16.8" fill="none" stroke="currentColor" stroke-width="1.1"/>
-        <path class="pl-fill" d="M32 23.5 36.8 34 32 34Z" fill="currentColor"/>
+      <svg class="preloader__crown" viewBox="68.4 37.8 55.2 37.6">
+        <path class="pl-draw" fill-rule="evenodd" d="M102.89 55.26L105.08 59.05L106.44 61.4L108.65 65.23L109.32 66.4L114.4 75.2L123.37 41.75L108.07 56.22L109.43 58.58L118.39 50.1L113.5 68.34L112.1 65.9L111.42 64.73L108.42 59.53L107.06 57.18L104.34 52.46L103.66 51.29L97.53 40.67L96 38.02L94.47 40.67L85.63 55.97L87.61 57.84L96 43.31L102.22 54.09L102.89 55.26L102.89 55.26ZM115.18 55.49L112.92 63.92L110.57 59.85L115.18 55.49L115.18 55.49ZM96 46.73L102.93 58.73L96 65.28L96 46.73L96 46.73ZM81.43 59.85L76.82 55.49L79.08 63.92L81.43 59.85L81.43 59.85ZM81.24 53.68L82.22 54.61L84.94 57.18L86.92 59.05L90 61.96L90.98 62.89L96 67.64L104.07 60L105.43 62.36L97.92 69.46L96 71.28L94.07 69.46L88.66 64.34L87.68 63.41L85.56 61.4L83.58 59.53L80.92 57.02L79.94 56.09L73.61 50.1L78.49 68.34L82.88 60.74L84.86 62.61L77.59 75.2L68.63 41.75L81.24 53.68Z"/>
       </svg>
-      <p class="preloader__word">MasterPiece</p>
+      <img class="preloader__word" src="logo-wordmark.svg" alt="" width="190" height="46">
       <p class="preloader__count"><span data-count>0</span></p>
     </div>
   </div>
@@ -134,8 +129,7 @@
   <!-- Navigation -->
   <header class="nav" data-nav>
     <a class="brand" href="#top" aria-label="MasterPiece Tailor, back to top">
-      <svg class="brand__crown" aria-hidden="true"><use href="#crown"/></svg>
-      <span class="brand__word">MasterPiece<small>Tailor</small></span>
+      <img class="brand__logo" src="logo-lockup.svg" alt="MasterPiece Tailor" width="184" height="38">
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#experience">Experience</a>
@@ -187,19 +181,22 @@
         </div>
         <figure class="hero__media">
           <div class="hero__frame">
-            <img class="hero__img" src="https://primary.jwwb.nl/public/i/p/o/temp-uxippqujcmqxuvnsntof/3801889901.jpg?enable-io=true&amp;width=800" width="800" height="1046" alt="A man buttoning a tailored beige suit jacket over a blue shirt and burgundy tie" fetchpriority="high" decoding="async">
+            <img class="hero__img" src="hero-suit.jpg" width="800" height="1046" alt="A man buttoning a tailored beige MasterPiece suit with a gold crown lapel pin, over a blue shirt and burgundy tie" fetchpriority="high" decoding="async">
             <span class="hero__curtain" aria-hidden="true"></span>
           </div>
         </figure>
       </section>
 
+      <!-- Quick trust bar: one continuous crawl line -->
       <div class="trust" data-trust>
-        <ul class="trust__list" aria-label="MasterPiece at a glance">
-          <li><span class="trust__k">Est.</span> 1998</li>
-          <li>Kelana Jaya <span class="trust__k">+</span> Cyberjaya</li>
-          <li>15–20 <span class="trust__k">days</span></li>
-          <li><span class="trust__rating" data-flow="4.9" data-decimals="1">4.9</span> <i class="ph-fill ph-star" aria-hidden="true"></i> <span class="trust__k">Google</span></li>
-        </ul>
+        <div class="trust__crawl" data-crawl>
+          <ul class="trust__track" aria-label="MasterPiece at a glance">
+            <li><strong>Est. 1998</strong><em>28 Years of MasterPiece</em></li>
+            <li><strong>Top 10 in Malaysia</strong><em>Bespoke Tailoring · 2025</em></li>
+            <li><strong>20,000+</strong><em>Clients Tailored</em></li>
+            <li><strong><i class="ph-fill ph-star" aria-hidden="true"></i>4.9 Google</strong><em>Client Rated</em></li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -207,13 +204,13 @@
     <div class="scene" data-scene="weave" id="identity">
       <section class="identity" aria-labelledby="identity-title">
         <div class="identity__copy">
-          <h2 class="h2" id="identity-title" data-split>There is only one you</h2>
+          <h2 class="h2" id="identity-title" data-split>There is only one <span class="gold">you</span></h2>
           <p class="identity__line" data-scrub-words>Your style. Your preferences. Your personality. The way you carry yourself.</p>
           <p class="identity__line" data-scrub-words>They're uniquely yours.</p>
           <p class="identity__punch" data-scrub-words>What you wear should be too.</p>
         </div>
         <figure class="identity__media" data-clip-reveal>
-          <img src="https://primary.jwwb.nl/public/i/p/o/temp-uxippqujcmqxuvnsntof/6j4o27/19102961171-1.png?enable-io=true&amp;width=900" width="900" height="1236" alt="A man in a blue windowpane check suit adjusting his sunglasses by the water" loading="lazy" decoding="async">
+          <img src="identity-suit.jpg" width="691" height="922" alt="A man buttoning a charcoal three-piece MasterPiece suit with a gold crown lapel pin" loading="lazy" decoding="async">
         </figure>
       </section>
     </div>
@@ -221,21 +218,34 @@
     <!-- 3 THE MASTERPIECE EXPERIENCE -->
     <div class="scene" data-scene="folds" id="experience">
       <section class="experience" aria-labelledby="experience-title">
-        <figure class="swatches" aria-hidden="true">
-          <div class="swatch swatch--pinstripe"><span>Wool pinstripe</span></div>
-          <div class="swatch swatch--check"><span>Glen check</span></div>
-          <div class="swatch swatch--twill"><span>Wool twill</span></div>
-          <div class="swatch swatch--linen"><span>Linen</span></div>
-          <div class="swatch swatch--birdseye"><span>Viscose blend</span></div>
-        </figure>
-        <div class="experience__copy">
-          <h2 class="h2" id="experience-title" data-split>Constructing your MasterPiece</h2>
-          <p class="lede">Expert guidance at every step, helping you discover your personal style and create a MasterPiece that's distinctly yours.</p>
-          <ul class="pillars">
-            <li class="pillar" data-reveal><i class="ph ph-fingerprint" aria-hidden="true"></i><h3>Personal style</h3><p>Discover what works for you.</p></li>
-            <li class="pillar" data-reveal><i class="ph ph-compass" aria-hidden="true"></i><h3>Expert guidance</h3><p>Our specialists guide every decision.</p></li>
-            <li class="pillar" data-reveal><i class="ph ph-crown-simple" aria-hidden="true"></i><h3>Distinctly yours</h3><p>Every detail comes together around you.</p></li>
-          </ul>
+        <header class="experience__head">
+          <h2 class="h2" id="experience-title" data-split>Constructing your <span class="gold">MasterPiece</span></h2>
+          <p class="experience__lead">It all starts with understanding <span class="gold">you</span>.</p>
+        </header>
+
+        <!-- The photo follows the numbered steps as they scroll by -->
+        <div class="xstage" data-xstage>
+          <figure class="xstage__img is-active"><img src="fabric-collection.jpg" width="1383" height="922" alt="A box of Italian suit fabrics rolled and banded with the MasterPiece monogram" loading="lazy" decoding="async"></figure>
+          <figure class="xstage__img"><img src="fabric-glen-check.jpg" width="1383" height="922" alt="Glen check cloth beside a tailored glen check jacket wearing the MasterPiece crown pin" loading="lazy" decoding="async"></figure>
+          <figure class="xstage__img"><img src="fabric-herringbone.jpg" width="1383" height="922" alt="Charcoal herringbone cloth beside a three-piece suit wearing the MasterPiece crown pin" loading="lazy" decoding="async"></figure>
+        </div>
+
+        <ol class="steps" data-steps>
+          <li class="step is-active">
+            <span class="step__num" aria-hidden="true">1</span>
+            <div><h3>Personal style</h3><p>Discover what works for you.</p></div>
+          </li>
+          <li class="step">
+            <span class="step__num" aria-hidden="true">2</span>
+            <div><h3>Expert guidance</h3><p>Shaping your vision together.</p></div>
+          </li>
+          <li class="step">
+            <span class="step__num" aria-hidden="true">3</span>
+            <div><h3>Distinctly yours</h3><p>Created for you alone.</p></div>
+          </li>
+        </ol>
+
+        <div class="experience__cta">
           <a class="btn btn--gold btn--lg magnetic" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
         </div>
       </section>
@@ -328,7 +338,7 @@
 
           <div class="craft__copy">
             <h2 class="h2" id="journey-title" data-split>Your MasterPiece journey</h2>
-            <p class="craft__kicker"><strong>The Creation of Your MasterPiece.</strong> Three simple steps to your very own MasterPiece.</p>
+            <p class="craft__kicker">The Creation of Your MasterPiece in <strong>THREE</strong> simple steps.</p>
             <ol class="craft__steps">
               <li class="is-active"><button type="button" data-step="0"><span class="craft__num">01</span>Discover</button></li>
               <li><button type="button" data-step="1"><span class="craft__num">02</span>Craft</button></li>
@@ -361,8 +371,8 @@
             <dd><span class="stat__unit stat__unit--pre">Since</span><span class="stat__num" data-flow="1998" data-plain>1998</span></dd>
           </div>
           <div class="stat" data-reveal>
-            <dt>clients served</dt>
-            <dd><span class="stat__num" data-flow="19889">19,889</span></dd>
+            <dt>clients tailored</dt>
+            <dd><span class="stat__num" data-flow="20000">20,000</span><span class="stat__num stat__plus">+</span></dd>
           </div>
           <div class="stat" data-reveal>
             <dt>years of MasterPiece craftsmanship</dt>
@@ -452,7 +462,7 @@
         <div class="stack">
           <article class="stack__card" id="business">
             <div class="stack__inner">
-              <div class="stack__media"><img src="https://primary.jwwb.nl/public/i/p/o/temp-uxippqujcmqxuvnsntof/photo_2024-02-18152011.jpg?enable-io=true&amp;width=800" width="799" height="967" alt="A navy three-piece suit with white shirt and dark tie" loading="lazy" decoding="async"></div>
+              <div class="stack__media"><img src="suit-business.jpg" width="799" height="967" alt="A navy three-piece MasterPiece suit with a gold crown lapel pin, white shirt and dark tie" loading="lazy" decoding="async"></div>
               <div class="stack__copy">
                 <h3 class="stack__title">Business</h3>
                 <p>Command the room with confidence.</p>
@@ -463,7 +473,7 @@
 
           <article class="stack__card" id="weddings">
             <div class="stack__inner">
-              <div class="stack__media stack__media--mono"><img src="https://primary.jwwb.nl/public/i/p/o/temp-uxippqujcmqxuvnsntof/wedding-636021_640.jpg?enable-io=true&amp;width=464" width="464" height="640" alt="A groom adjusting the cuff of a white dinner jacket with black trim and a bow tie" loading="lazy" decoding="async"></div>
+              <div class="stack__media"><img src="suit-wedding.jpg" width="464" height="640" alt="A groom adjusting the cuff of a white dinner jacket with black trim, a bow tie and a gold crown lapel pin" loading="lazy" decoding="async"></div>
               <div class="stack__copy">
                 <h3 class="stack__title">Weddings</h3>
                 <p>Your day. Your style. Your MasterPiece.</p>
@@ -474,7 +484,7 @@
 
           <article class="stack__card" id="occasions">
             <div class="stack__inner">
-              <div class="stack__media stack__media--crop" role="img" aria-label="A man in a black tuxedo with a bow tie and white pocket square" style="--img:url('https://primary.jwwb.nl/public/i/p/o/temp-uxippqujcmqxuvnsntof/tux-1-high.png?enable-io=true&amp;width=1800')"></div>
+              <div class="stack__media"><img src="suit-occasions.jpg" width="580" height="460" alt="A black tuxedo with a satin shawl lapel, bow tie and gold crown lapel pin" loading="lazy" decoding="async"></div>
               <div class="stack__copy">
                 <h3 class="stack__title">Occasions</h3>
                 <p>For moments worth dressing for.</p>
@@ -485,7 +495,7 @@
 
           <article class="stack__card" id="everyday">
             <div class="stack__inner">
-              <div class="stack__media"><img src="https://primary.jwwb.nl/public/i/p/o/temp-uxippqujcmqxuvnsntof/pl59ap/photo_2024-01-28224443.jpg?enable-io=true&amp;width=736" width="736" height="919" alt="A tailored light blue shirt with a navy knit tie and grey trousers" loading="lazy" decoding="async"></div>
+              <div class="stack__media"><img src="shirt-everyday.jpg" width="736" height="919" alt="A tailored light blue shirt with a navy knit tie and grey trousers" loading="lazy" decoding="async"></div>
               <div class="stack__copy">
                 <h3 class="stack__title">Everyday</h3>
                 <p>Elevated pieces, made distinctly yours.</p>
@@ -678,7 +688,7 @@
       </section>
 
       <footer class="footer" id="visit">
-        <p class="footer__word" aria-hidden="true">MasterPiece</p>
+        <img class="footer__word" src="logo-wordmark.svg" alt="" aria-hidden="true" width="1100" height="265" loading="lazy">
 
         <div class="footer__brand">
           <div>
