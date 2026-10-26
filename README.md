@@ -1,127 +1,129 @@
 # MasterPiece Tailor website
 
-A static, single-page site for MasterPiece Tailor (Kelana Jaya and Cyberjaya), built to the client's **Homepage Master Wireframe** and updated with the **v2 content and logo** (MPT Website v2, Fabric Guide). Plain HTML, CSS and JavaScript with no build step. Every file sits at the top level, so you can drag them straight into a GitHub repository and deploy on Cloudflare Pages.
+A static website for MasterPiece Tailor (Kelana Jaya and Cyberjaya): the homepage, an Insights page, and Privacy and Terms pages. It is built to the client's wireframe, the v2 content and logo, and the third round of client changes. Plain HTML, CSS and JavaScript with no build step. Every file sits at the top level, so you can drag them straight into GitHub and deploy on Cloudflare Pages.
 
-## Page structure
+## What's on the homepage
 
 | # | Section | What it does |
 | --- | --- | --- |
-| 1 | Hero + trust crawl | "Luxury tailored clothing", Book a consultation, *Bespoke Within Reach.* A single line of text crawls across the screen: Est. 1998 · 28 Years of MasterPiece, Top 10 in Malaysia · Bespoke Tailoring 2025, 20,000+ · Clients Tailored, ★4.9 Google · Client Rated |
-| 2 | Identity | "There is only one **you**". Words light up as you scroll, and the editorial portrait opens up |
-| 3 | The MasterPiece experience | "Constructing your **MasterPiece**", led by "It all starts with understanding **you**." Numbered steps 1 Personal style, 2 Expert guidance, 3 Distinctly yours light up one by one while the Fabric Guide photos crossfade beside them |
-| 4 | The process | "Your MasterPiece journey": "The Creation of Your MasterPiece in **THREE** simple steps". 01 Discover, 02 Craft, 03 Distinguish. A jacket draws itself as you scroll (pinned on desktop and phones, with tappable steps) |
-| 5 | Heritage + authority | "A legacy of craftsmanship". Rolling stats (100+ years, since 1998, 20,000+ clients, 28 years), a timeline bar chart and Discover our story. Then the horizontal "Our story" timeline and the Trusted by strip |
-| 6 | Product discovery | "One you. Many moments.": stacking Business, Weddings, Occasions and Everyday cards. Then "Explore the collection" with prices |
-| 7 | Social proof | "The power of presence": client stories, the 4.9★ Google rating ring and Read more client stories |
-| 8 | Final CTA | "Make powerful impressions", Book your complimentary consultation |
-| Footer | | Large MasterPiece Tailor wordmark, both ateliers with live open/closed status, hours and directions, Explore, Connect, Privacy and Terms |
-| Mobile | | Sticky WhatsApp and Book a consultation bar |
+| - | Welcome pop-up | 10% off your first MasterPiece. Visitors enter their email and the voucher is emailed to them (see "Setting up the voucher email"). Shows once, shortly after the page loads. "No thanks" leaves a small "10% off" tab in the corner |
+| 1 | Hero + trust crawl | Stacked logo in the nav, "Enquire us" (WhatsApp) top right, "Luxury tailored clothing", Book a consultation. One line of text crawls across: Est. 1998, Top 10 in Malaysia, 20,000+ clients, ★4.9 Google |
+| 2 | Identity | "There is only one **you**". Words light up as you scroll |
+| 3 | Constructing your MasterPiece | One section: three numbered pillars (1 Personal style, 2 Expert guidance, 3 Distinctly yours) with the Fabric Guide photos and a gold line that runs between the numbers. It flows into **Your MasterPiece journey**, five steps: Consultation, Measurement, Fabric selection, Fitting, Delivery. A jacket draws itself as you scroll (pinned on desktop and phones, with tappable steps) |
+| 4 | Questions & answers | The FAQ from the old website (turnaround, weddings, fabrics, womenswear) plus corporate orders, payment and appointments |
+| 5 | Heritage + authority | "A legacy of craftsmanship", rolling stats, timeline chart, the "Our story" timeline and Trusted by |
+| 6 | One you. Many moments. | Business, Weddings, Occasions and Everyday cards |
+| 6b | Explore the collection | Six photographs (Suits, Jackets, Shirts, Trousers, Tuxedos, Womenswear), each with a price |
+| 6c | Worn by our clients | Placeholders for 5 client photos and 3 client videos (see "Adding client photos and videos") |
+| 7 | The power of presence | Client stories and the Google rating ring |
+| 8 | Final CTA + footer | Book your complimentary consultation, both ateliers with live opening hours |
+
+## The Insights page
+
+`insights.html` shows the client's articles. They come from **Soro** (trysoro.com), the service that already writes and publishes an article every couple of days on their current website. The same Soro feed is embedded here, so:
+
+- new articles keep appearing automatically, with nothing to upload
+- every old article link (for example `masterpiecetailor.my/insights?post=guide-to-trouser-break`) keeps working once the domain moves to this site
+- the page adds topic filters (Weddings, Suits & jackets, Shirts, Trousers, Fabrics, Fit & care), a search box, a large "latest article" card, "Show more", and a reading-progress bar inside articles, all in the MasterPiece look
 
 ## Files
 
 | File | What it does |
 | --- | --- |
-| `index.html` | The whole homepage |
-| `styles.css` | Design tokens (navy and brand gold `#F4C251`), brand font stacks, layout, responsive rules, reduced-motion fallbacks |
-| `main.js` | Lenis smooth scroll, GSAP ScrollTrigger scenes, SplitText reveals, the crown-drawing preloader, trust crawl, experience steps, collection filter, menu, opening hours |
-| `threads.js` | The scroll-scrubbed vector background (gold threads that morph per section and react to the cursor) |
+| `index.html` | The homepage |
+| `insights.html`, `insights.js` | The Insights page, and its filters and search |
+| `voucher.js` | The 10% welcome voucher pop-up |
+| `_worker.js` | The small server part on Cloudflare: emails the voucher through Brevo, and forwards old website addresses |
+| `_routes.json` | Tells Cloudflare to run `_worker.js` only for the voucher and the old addresses (everything else is served as plain files) |
+| `styles.css` | All styling: design tokens (navy and brand gold `#F4C251`), layout, responsive rules, reduced-motion fallbacks |
+| `main.js` | Smooth scrolling (Lenis), scroll animations (GSAP), the preloader, nav, menu, FAQ, opening hours. Runs on both pages |
+| `threads.js` | The scroll-animated vector background |
 | `charts.js` | Bklit-style charts: rating ring, timeline bar, rolling numbers |
-| `privacy.html`, `terms.html` | Privacy and Terms pages |
-| `404.html` | Not-found page (Cloudflare Pages serves it automatically) |
+| `privacy.html`, `terms.html` | Privacy notice (now covers the voucher email) and Terms (now includes the voucher terms) |
+| `404.html` | Not-found page |
 | `favicon.svg`, `site.webmanifest`, `robots.txt`, `sitemap.xml`, `_headers` | Icon, manifest, search files, security headers |
-
-### Logo files
-
-Redrawn as exact vectors from the client's Illustrator file (`Masterpiece Tailor.ai`), in brand gold `#F4C251`.
-
-| File | Used for |
-| --- | --- |
-| `logo.svg` | Full stacked logo (crown over wordmark). Used on the 404 page; also the one to send to anyone who asks for the logo |
-| `logo-lockup.svg` | Horizontal crown + wordmark. Navigation bar on every page |
-| `logo-crown.svg` | Crown only. Separators in the trust crawl and Trusted by strip |
-| `logo-wordmark.svg` | "MasterPiece Tailor" wordmark. Preloader and the large footer signature |
-| `favicon.svg` | Crown on navy, for browser tabs |
+| `logo.svg`, `logo-lockup.svg`, `logo-crown.svg`, `logo-wordmark.svg` | The logo, redrawn as vectors from the client's Illustrator file. The nav uses the stacked `logo.svg`; the lockup is kept as a spare |
+| `email-logo.png` | The logo as a picture for the voucher email (email apps can't show SVG) |
 
 ### Photos
 
-Every photo is stored in the repository, so nothing depends on the old website. The suit photos have the gold crown "logo on suit" pin painted onto the lapel, as the v2 brief asks.
+| File | Where |
+| --- | --- |
+| `hero-suit.jpg` | Hero |
+| `identity-suit.jpg` | "There is only one you" and the voucher pop-up |
+| `fabric-collection.jpg`, `fabric-glen-check.jpg`, `fabric-herringbone.jpg` | The three pillars (from the Fabric Guide) |
+| `suit-business.jpg`, `suit-wedding.jpg`, `suit-occasions.jpg`, `shirt-everyday.jpg` | Business, Weddings, Occasions and Everyday cards |
+| `collection-suits.jpg`, `collection-jackets.jpg`, `collection-shirts.jpg`, `collection-trousers.jpg`, `collection-tuxedos.jpg`, `collection-womenswear.jpg` | Explore the collection. AI-generated studio photos, made for this site |
 
-| File | Section | Source |
-| --- | --- | --- |
-| `hero-suit.jpg` | Hero (also the preview image when the link is shared) | Old website |
-| `identity-suit.jpg` | There is only one you | Fabric Guide |
-| `fabric-collection.jpg` | Experience, step 1 | Fabric Guide (Italian fabrics) |
-| `fabric-glen-check.jpg` | Experience, step 2 | Fabric Guide (glen check) |
-| `fabric-herringbone.jpg` | Experience, step 3 | Fabric Guide (herringbone) |
-| `suit-business.jpg` | Business card | Old website |
-| `suit-wedding.jpg` | Weddings card | Old website |
-| `suit-occasions.jpg` | Occasions card | Old website (cropped from a promo poster) |
-| `shirt-everyday.jpg` | Everyday card | Old website |
-
-**To replace a photo:** save the new one as a JPG with **the same file name** and upload it to GitHub over the old one. No code changes are needed. Suit photos look best around 800 px wide and portrait; the three fabric photos are 3:2 landscape, about 1400 px wide.
+Suit photos carry the gold crown "logo on suit" pin. **To replace any photo**, save the new one as a JPG with the same file name and upload it over the old one. Collection photos are portrait 4:5, about 900 px wide.
 
 ## Deploy
 
-1. **GitHub:** open the repository, click **Add file > Upload files**, drag in every file and commit. Files with the same name are replaced; the rest are added.
-2. **Cloudflare:** go to **Workers & Pages > Create > Pages > Connect to Git** and pick the repository.
+1. **GitHub:** open the repository, click **Add file > Upload files**, drag in every file and commit. Files with the same name are replaced; new ones are added. Nothing needs deleting.
+2. **Cloudflare:** **Workers & Pages > Create > Pages > Connect to Git**, pick the repository.
    - Framework preset: **None**
    - Build command: *leave empty*
    - Build output directory: `/`
 3. **Check the preview** on the `*.pages.dev` address Cloudflare gives you.
-4. **Custom domain:** when the client approves, add `www.masterpiecetailor.my` under **Custom domains** and follow the DNS prompts.
+4. **Custom domain:** when the client approves, add `www.masterpiecetailor.my` under **Custom domains**. This replaces their current website.
 
-## Brand fonts
+## Setting up the voucher email (Brevo, free)
 
-The brief specifies **Optima** and **Canva Sans**. Both are licensed fonts that can't be loaded from a free web font service.
+Until this is done, the pop-up still works: when the email can't be sent, it offers to send the voucher over WhatsApp instead.
 
-- **Optima:** the CSS asks for it first, so devices that have it installed (most Macs, iPhones and iPads) show real Optima. Everyone else sees **Belleza**, the closest free match.
-- **Canva Sans:** only available inside Canva. The site uses **Figtree** as its stand-in.
+1. Create a free account at **brevo.com** with the client's business email (the free plan sends 300 emails a day).
+2. In Brevo, open **Senders, Domains & Dedicated IPs > Senders** and add the address the voucher should come from, for example `ask@masterpiecetailor.my`. Brevo emails a code to confirm it. For the best delivery, also authenticate the domain under **Domains**; Brevo shows the DNS records to add.
+3. Open **SMTP & API > API keys**, create a key and copy it.
+4. Optional: under **Contacts > Lists**, create a list such as "Website voucher" and note its number (ID). People who tick "send me news and offers" are added to it.
+5. In Cloudflare, open the project, then **Settings > Variables and Secrets**, and add:
 
-If the client buys web licences (for example Optima from Linotype/Monotype), add the `.woff2` files to the repository and add `@font-face` rules at the top of `styles.css`. Name them `Optima` and `Canva Sans`, and every visitor will see the real fonts.
+   | Name | Value |
+   | --- | --- |
+   | `BREVO_API_KEY` | the key from step 3 (choose type **Secret**) |
+   | `VOUCHER_FROM_EMAIL` | the sender address from step 2 |
+   | `VOUCHER_CODE` | optional, defaults to `WELCOME10` |
+   | `BREVO_LIST_ID` | optional, the list number from step 4 |
+   | `VOUCHER_NOTIFY_EMAIL` | optional, gets a note each time a voucher is sent |
+   | `VOUCHER_FROM_NAME` | optional, defaults to `MasterPiece Tailor` |
 
-## Buttons that point somewhere temporary
+6. Redeploy (**Deployments > Retry deployment**) so the settings take effect, then test with your own email.
+7. Tell the atelier staff the voucher code, so they can apply 10% when a client quotes it.
 
-The wireframe's buttons refer to pages that don't exist yet. Until they do:
+If Brevo rejects the key with an "unrecognised IP address" message, open Brevo's **Security > Authorised IPs** and turn the IP restriction off (Cloudflare's servers don't have fixed addresses).
 
-| Button | Currently goes to | Change it to |
-| --- | --- | --- |
-| Explore business, Discover MasterPiece Groom, Explore occasion wear, Explore | Scrolls to "Explore the collection" and highlights the matching pieces | The Business, Groom, Occasions and Everyday pages once built (edit the `href` in `index.html`) |
-| Explore our collection | Instagram profile | A collection page |
-| Discover our story | The "Our story" timeline on this page | An Our Story page |
-| Read more client stories | Google Maps reviews (Cyberjaya) | A testimonials page |
-| Insights (footer) | Instagram profile | An Insights page |
-| Book a consultation (all) | https://book.masterpiecetailor.my | No change needed |
+## Adding client photos and videos
 
-## Still to come from the client
+The "Worn by our clients" section has 8 placeholders in `index.html` (search for `worn__ph`).
 
-- **Journey visuals:** the v2 brief says "Visuals to follow" for "Your MasterPiece journey". The animated line-drawn jacket stays in place until they arrive.
-- **Client portraits:** client stories show gold monogram frames. Replace each `<span>` inside `.portrait` in `index.html` with `<img src="client-name.jpg" alt="">`, with the client's consent.
-- **The six garments in "Explore the collection":** drawn as gold line illustrations. Real product photos can replace them later.
+- **Photo:** replace a whole `<div class="worn__ph">...</div>` with `<img src="client-1.jpg" alt="A client in a navy MasterPiece suit" loading="lazy">`. Portrait 4:5 works best.
+- **Video:** replace it with `<video src="client-video-1.mp4" poster="client-video-1.jpg" muted loop playsinline preload="none"></video>`. Use short, portrait 9:16 MP4s under about 8 MB each. They play by themselves while on screen, and a sound button appears automatically.
+- Change the caption under each tile (`<figcaption>`) to suit, and upload the new files to GitHub.
+- Only use client photos and videos with the client's consent.
 
-## Before going live: confirm with the client
+## Old website addresses
 
-- **Client-supplied figures** shown as given: 100+ years, 20,000+ clients, 28 years, Top 10 in Malaysia (Bespoke Tailoring 2025), and the prices (suits from RM1,100, shirts from RM160, trousers from RM400). Jackets, tuxedos and womenswear show "Made to measure" because no price was given.
-- **Trusted by:** Malaysia Airports, MDEC, MyCEB, MS Gold and PPHM (from the wireframe), plus the other names from their corporate flyer (PR1MA, MRCA, Yes Holiday, Sonali Jewels, Persatuan Guru Besar Malaysia, Malaysian Gifts & Premium Association). They're shown as names. Swap in logo files if the client has permission to use them.
-- **Heritage:** the 1920s Penang origin and royal commissions come from their old website.
-- **Google rating:** from Google Maps in October 2026 (4.9 from 121 reviews across both ateliers). The figure is in `main.js` (`initRating`) and the trust crawl in `index.html`.
-- **Testimonials:** three, lightly trimmed from the client's own testimonial cards.
-- **Privacy and Terms:** plain-language starting points, not legal advice.
+Once the domain points here, these old pages forward automatically (in `_worker.js`): `/craftsmanship` to the journey, `/promotion` to the collection, `/corporate` to Business, `/contact` to Visit us, `/news` to Our story, `/career` to the homepage and `/privacy-policy` to Privacy. `/insights` and its `?post=` article links keep working as they are.
+
+## Confirm with the client before going live
+
+- **Prices.** Suits from RM1,100, Shirts from RM160 and Trousers from RM400 are the wireframe's figures. Tuxedos from RM1,399 comes from their Promotion page. **Jackets (RM700) and Womenswear (RM1,100) are placeholders** worked out from the suit and trouser prices, because the client hasn't published them. Also, their Promotion page lists shirts from RM195 and trousers from RM450, which differs from the wireframe. Prices are in `index.html` (search for `garment__price`).
+- **Voucher terms.** The pop-up and email say "one voucher per client, on your first order" and that it can't be combined with other promotions (worded like their own promotion terms). Edit in `index.html`, `insights.html`, `terms.html` and `_worker.js` (`TERMS`).
+- **FAQ.** The first four answers are from their old website. "How does payment work?" (50% deposit, balance on collection) comes from their promotion terms. Check that it applies to all orders.
+- **Figures.** 100+ years, 20,000+ clients, 28 years and Top 10 in Malaysia are shown as the client gave them. The Google rating (4.9 from 121 reviews, October 2026) is in `main.js` (`initRating`).
+- **Collection photos are AI-generated** product shots. Replace them with real photos whenever the client has them.
+- **Privacy and Terms** are plain-language starting points, not legal advice.
 
 ## Everyday edits
 
-- **Trust crawl wording:** the `.trust__track` list in `index.html`. The script repeats it automatically for the loop.
-- **Opening hours:** the `HOURS` object in `main.js` (live open/closed status) and the hours lists in the footer of `index.html`.
-- **WhatsApp numbers:** links in `index.html`. The general number is 017-458 2366.
-- **Which pieces each moment highlights:** the `data-moments` attribute on each garment in `index.html`.
+- **Trust crawl wording:** the `.trust__track` list in `index.html`.
+- **FAQ:** the `faq__item` blocks in `index.html`, and the matching `FAQPage` data near the top of the file (for Google).
+- **Opening hours:** `HOURS` in `main.js` and the hours lists in both footers.
+- **WhatsApp numbers:** links in `index.html` and `insights.html`. Enquire us and the voucher use 017-458 2366.
 
 ## Technical notes
 
-- **Libraries:** GSAP 3.13.0 (ScrollTrigger, SplitText), Lenis 1.3.26 and Phosphor Icons 2.1.1 from jsDelivr, and Belleza and Figtree from Google Fonts.
-- **Bklit:** Bklit UI is a React + Visx registry that needs a Node build step, so `charts.js` recreates its look and behaviour in plain SVG:
-  - `--chart-*` tokens
-  - staggered enter animations
-  - hover fades and tooltips
-  - a ring chart with a live centre value
-  - rolling-digit numbers
-- **Accessibility:** "reduce motion" visitors get native scrolling, no pinned or scrubbed scenes, a still trust bar and a still background. Every chart has a screen-reader data table.
-- **Fallback:** if the CDN libraries fail to load, the page still shows all content.
+- **Libraries:** GSAP 3.13.0 (ScrollTrigger, SplitText), Lenis 1.3.26 and Phosphor Icons 2.1.1 from jsDelivr, Belleza and Figtree from Google Fonts.
+- **Fonts:** the brand fonts Optima and Canva Sans are licensed. The CSS asks for Optima first (most Apple devices have it), then Belleza; Figtree stands in for Canva Sans. Add `@font-face` rules if the client buys web licences.
+- **Bklit:** `charts.js` recreates Bklit UI's look in plain SVG, as Bklit itself needs a React build step.
+- **Accessibility:** reduced-motion visitors get native scrolling and still scenes; the pop-up is a native dialog (Escape closes it, focus stays inside); every chart has a screen-reader table.
+- **Fallback:** if the CDN libraries fail to load, the pages still show all content.

@@ -52,7 +52,7 @@
     "email": "ask@masterpiecetailor.my",
     "image": "https://www.masterpiecetailor.my/hero-suit.jpg",
     "logo": "https://www.masterpiecetailor.my/logo.svg",
-    "priceRange": "RM160 - RM1,100+",
+    "priceRange": "RM160 - RM1,399",
     "sameAs": [
       "https://www.instagram.com/masterpiecetailor.my/",
       "https://www.facebook.com/masterpiecetailor.my/",
@@ -98,6 +98,21 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the turnaround time for custom tailoring?", "acceptedAnswer": { "@type": "Answer", "text": "Our tailoring process typically takes 15 to 20 days, allowing us to ensure proper fit and quality craftsmanship. For urgent requests, expedited services are available with additional charges." } },
+      { "@type": "Question", "name": "Do you offer bespoke wedding attire services?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we specialise in crafting bespoke wedding attire tailored to your style and preferences. Our team works closely with you to ensure every detail, from fabric selection to design, is perfectly suited for your special day." } },
+      { "@type": "Question", "name": "What fabrics do you use for bespoke clothing?", "acceptedAnswer": { "@type": "Answer", "text": "We offer a wide selection of quality fabrics, including viscose blends, wool blends, linen, and premium selections sourced from countries such as Italy, England and Japan. During your consultation, our specialists will guide you in choosing the most suitable fabric based on your style, comfort and budget." } },
+      { "@type": "Question", "name": "Do you offer tailoring for women?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we do. Our master tailor has strong expertise in crafting women's suits. We create elegant, well-fitted pieces tailored to your style and preferences, whether for business, formal occasions or special events." } },
+      { "@type": "Question", "name": "Do you tailor for corporate teams?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. From bespoke executive suits and corporate shirts to office uniforms and event attire, every garment is individually tailored. We also measure and fit corporate teams on site across the Klang Valley." } },
+      { "@type": "Question", "name": "How does payment work?", "acceptedAnswer": { "@type": "Answer", "text": "A 50% deposit is required when you confirm your order, with the balance payable when you collect your garment." } },
+      { "@type": "Question", "name": "Do I need an appointment?", "acceptedAnswer": { "@type": "Answer", "text": "We recommend booking a consultation so a tailor is ready for you. Book online at book.masterpiecetailor.my, or message us on WhatsApp." } }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -128,17 +143,19 @@
 
   <!-- Navigation -->
   <header class="nav" data-nav>
+    <!-- The stacked logo: crown above the MasterPiece Tailor wordmark -->
     <a class="brand" href="#top" aria-label="MasterPiece Tailor, back to top">
-      <img class="brand__logo" src="logo-lockup.svg" alt="MasterPiece Tailor" width="184" height="38">
+      <img class="brand__logo" src="logo.svg" alt="MasterPiece Tailor" width="95" height="69">
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="#experience">Experience</a>
-      <a href="#journey">Journey</a>
+      <a href="#experience">Journey</a>
+      <a href="#faq">FAQ</a>
       <a href="#legacy">Our Story</a>
       <a href="#moments">Collection</a>
       <a href="#clients">Clients</a>
+      <a href="insights.html">Insights</a>
     </nav>
-    <a class="btn btn--gold nav__cta magnetic" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation</a>
+    <a class="btn btn--gold nav__cta magnetic" href="https://wa.me/60174582366?text=Hi%20MasterPiece%20Tailor%2C%20I%27d%20like%20to%20enquire%20about%20a%20tailored%20piece." target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i>Enquire us</a>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu">
       <i class="ph ph-list" aria-hidden="true"></i><span class="sr-only">Open menu</span>
     </button>
@@ -146,16 +163,17 @@
 
   <div class="menu" id="menu" hidden>
     <nav class="menu__links" aria-label="Mobile">
-      <a href="#experience">Experience</a>
-      <a href="#journey">Journey</a>
+      <a href="#experience">Journey</a>
+      <a href="#faq">FAQ</a>
       <a href="#legacy">Our Story</a>
       <a href="#moments">Collection</a>
       <a href="#clients">Clients</a>
+      <a href="insights.html">Insights</a>
       <a href="#visit">Visit us</a>
     </nav>
     <div class="menu__foot">
       <a class="btn btn--gold" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation</a>
-      <a class="btn btn--ghost" href="https://wa.me/60174582366" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i>WhatsApp</a>
+      <a class="btn btn--ghost" href="https://wa.me/60174582366?text=Hi%20MasterPiece%20Tailor%2C%20I%27d%20like%20to%20enquire%20about%20a%20tailored%20piece." target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i>Enquire us</a>
     </div>
   </div>
 
@@ -210,12 +228,13 @@
           <p class="identity__punch" data-scrub-words>What you wear should be too.</p>
         </div>
         <figure class="identity__media" data-clip-reveal>
-          <img src="identity-suit.jpg" width="691" height="922" alt="A man buttoning a charcoal three-piece MasterPiece suit with a gold crown lapel pin" loading="lazy" decoding="async">
+          <img src="identity-suit.jpg" width="685" height="922" alt="A man buttoning a charcoal three-piece MasterPiece suit with a gold crown lapel pin" loading="lazy" decoding="async">
         </figure>
       </section>
     </div>
 
-    <!-- 3 THE MASTERPIECE EXPERIENCE -->
+    <!-- 3 CONSTRUCTING YOUR MASTERPIECE: the three pillars, then the five-step journey.
+         One section in two background scenes (folds, then the blueprint grid). -->
     <div class="scene" data-scene="folds" id="experience">
       <section class="experience" aria-labelledby="experience-title">
         <header class="experience__head">
@@ -223,37 +242,33 @@
           <p class="experience__lead">It all starts with understanding <span class="gold">you</span>.</p>
         </header>
 
-        <!-- The photo follows the numbered steps as they scroll by -->
-        <div class="xstage" data-xstage>
-          <figure class="xstage__img is-active"><img src="fabric-collection.jpg" width="1383" height="922" alt="A box of Italian suit fabrics rolled and banded with the MasterPiece monogram" loading="lazy" decoding="async"></figure>
-          <figure class="xstage__img"><img src="fabric-glen-check.jpg" width="1383" height="922" alt="Glen check cloth beside a tailored glen check jacket wearing the MasterPiece crown pin" loading="lazy" decoding="async"></figure>
-          <figure class="xstage__img"><img src="fabric-herringbone.jpg" width="1383" height="922" alt="Charcoal herringbone cloth beside a three-piece suit wearing the MasterPiece crown pin" loading="lazy" decoding="async"></figure>
-        </div>
-
-        <ol class="steps" data-steps>
-          <li class="step is-active">
-            <span class="step__num" aria-hidden="true">1</span>
-            <div><h3>Personal style</h3><p>Discover what works for you.</p></div>
+        <!-- The gold line runs 1 to 3 and each number lights up as you scroll -->
+        <ol class="pillars" data-pillars>
+          <li class="pillar">
+            <div class="pillar__head" aria-hidden="true"><span class="pillar__num">1</span><span class="pillar__line"></span></div>
+            <figure class="pillar__media"><img src="fabric-collection.jpg" width="1383" height="922" alt="A box of Italian suit fabrics rolled and banded with the MasterPiece monogram" loading="lazy" decoding="async"></figure>
+            <h3 class="pillar__title">Personal style</h3>
+            <p>Discover what works for you.</p>
           </li>
-          <li class="step">
-            <span class="step__num" aria-hidden="true">2</span>
-            <div><h3>Expert guidance</h3><p>Shaping your vision together.</p></div>
+          <li class="pillar">
+            <div class="pillar__head" aria-hidden="true"><span class="pillar__num">2</span><span class="pillar__line"></span></div>
+            <figure class="pillar__media"><img src="fabric-glen-check.jpg" width="1383" height="922" alt="Glen check cloth beside a tailored glen check jacket wearing the MasterPiece crown pin" loading="lazy" decoding="async"></figure>
+            <h3 class="pillar__title">Expert guidance</h3>
+            <p>Shaping your vision together.</p>
           </li>
-          <li class="step">
-            <span class="step__num" aria-hidden="true">3</span>
-            <div><h3>Distinctly yours</h3><p>Created for you alone.</p></div>
+          <li class="pillar">
+            <div class="pillar__head" aria-hidden="true"><span class="pillar__num">3</span><span class="pillar__line"></span></div>
+            <figure class="pillar__media"><img src="fabric-herringbone.jpg" width="1383" height="922" alt="Charcoal herringbone cloth beside a three-piece suit wearing the MasterPiece crown pin" loading="lazy" decoding="async"></figure>
+            <h3 class="pillar__title">Distinctly yours</h3>
+            <p>Created for you alone.</p>
           </li>
         </ol>
-
-        <div class="experience__cta">
-          <a class="btn btn--gold btn--lg magnetic" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-        </div>
       </section>
     </div>
 
-    <!-- 4 THE PROCESS (pinned drawing) -->
+    <!-- 3b YOUR MASTERPIECE JOURNEY: the jacket draws itself across five steps (pinned) -->
     <div class="scene" data-scene="grid" id="journey">
-      <section class="craft" aria-labelledby="journey-title">
+      <div class="craft" role="region" aria-labelledby="journey-title">
         <div class="craft__inner">
           <figure class="craft__drawing" aria-hidden="true">
             <svg class="jacket" viewBox="-40 0 480 470">
@@ -279,7 +294,7 @@
               <!-- Paper pattern: a faint dotted silhouette visible before drawing starts -->
               <path class="j-ghost" d="M168 44 92 66C78 72 70 96 68 128L54 336 88 342 100 156 106 424Q150 432 186 428 198 412 200 392 202 412 214 428 250 432 294 424L300 156 312 342 346 336 332 128C330 96 322 72 308 66L232 44Q200 58 168 44Z"/>
 
-              <!-- Discover: silhouette and measurements -->
+              <!-- 01 Consultation: the silhouette -->
               <g class="j-outline">
                 <path class="j-draw j-out" d="M168 44 92 66C78 72 70 96 68 128L54 336 88 342 100 156"/>
                 <path class="j-draw j-out" d="M232 44 308 66C322 72 330 96 332 128L346 336 312 342 300 156"/>
@@ -289,6 +304,7 @@
                 <path class="j-draw j-out" d="M202 300 250 118 254 98 238 94 224 52 232 44"/>
                 <path class="j-draw j-out" d="M168 44Q200 58 232 44"/>
               </g>
+              <!-- 02 Measurement -->
               <g class="j-measure">
                 <path class="j-draw j-m" d="M92 24H308M92 18V30M308 18V30"/>
                 <path class="j-draw j-m" d="M98 204H302M98 198V210M302 198V210"/>
@@ -302,7 +318,8 @@
                 <text class="j-label" x="388" y="240">Length</text>
               </g>
 
-              <!-- Craft: details and fitting marks -->
+              <!-- 03 Fabric selection is the pinstripe cloth sweeping in (#fabricRect above).
+                   04 Fitting: construction details and chalk marks -->
               <g class="j-details">
                 <path class="j-draw j-det" d="M176 56Q186 180 198 300"/>
                 <path class="j-draw j-det" d="M224 56Q214 180 202 300"/>
@@ -323,7 +340,7 @@
                 <path class="j-draw j-ch" d="M256 414l8 8m0-8-8 8"/>
               </g>
 
-              <!-- Distinguish: finished -->
+              <!-- 05 Delivery: finished in gold, on the hanger -->
               <g class="j-final">
                 <circle class="j-btn" cx="200" cy="318" r="5.5"/>
                 <circle class="j-btn" cx="200" cy="362" r="5.5"/>
@@ -337,18 +354,64 @@
           </figure>
 
           <div class="craft__copy">
-            <h2 class="h2" id="journey-title" data-split>Your MasterPiece journey</h2>
-            <p class="craft__kicker">The Creation of Your MasterPiece in <strong>THREE</strong> simple steps.</p>
+            <h3 class="h2 craft__title" id="journey-title" data-split>Your MasterPiece journey</h3>
+            <p class="craft__kicker">The Creation of Your MasterPiece in <strong>FIVE</strong> simple steps, ready in 15 to 20 days.</p>
             <ol class="craft__steps">
-              <li class="is-active"><button type="button" data-step="0"><span class="craft__num">01</span>Discover</button></li>
-              <li><button type="button" data-step="1"><span class="craft__num">02</span>Craft</button></li>
-              <li><button type="button" data-step="2"><span class="craft__num">03</span>Distinguish</button></li>
+              <li class="is-active"><button type="button" data-step="0"><span class="craft__num">01</span>Consultation</button></li>
+              <li><button type="button" data-step="1"><span class="craft__num">02</span>Measurement</button></li>
+              <li><button type="button" data-step="2"><span class="craft__num">03</span>Fabric selection</button></li>
+              <li><button type="button" data-step="3"><span class="craft__num">04</span>Fitting</button></li>
+              <li><button type="button" data-step="4"><span class="craft__num">05</span>Delivery</button></li>
             </ol>
             <div class="craft__detail" aria-live="polite">
-              <p class="is-active">Together, we uncover your style, needs and preferences.</p>
-              <p>Your MasterPiece takes shape through precise measurements, considered choices and skilled craftsmanship.</p>
-              <p>A MasterPiece that exists nowhere else — created exclusively for you.</p>
+              <p class="is-active">We take the time to understand your style, fabric preferences and what you need.</p>
+              <p>Our tailors take precise measurements and draft a personal pattern for your frame.</p>
+              <p>Choose premium cloth from Italy, England, Switzerland, Germany, Spain and Japan.</p>
+              <p>Fittings let the tailor refine every detail until it sits exactly right.</p>
+              <p>Your MasterPiece is ready to collect. On a deadline? Ask about expedited service.</p>
             </div>
+            <a class="btn btn--gold btn--lg magnetic craft__cta" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 QUESTIONS AND ANSWERS (from the client's previous website) -->
+    <div class="scene" data-scene="weave" id="faq">
+      <section class="faq" aria-labelledby="faq-title">
+        <div class="faq__intro">
+          <h2 class="h2" id="faq-title" data-split>Questions <span class="gold">&amp;</span> answers</h2>
+          <p class="lede">Everything you may want to know before your first consultation.</p>
+          <a class="link-arrow" href="https://wa.me/60174582366?text=Hi%20MasterPiece%20Tailor%2C%20I%20have%20a%20question." target="_blank" rel="noopener">Ask us on WhatsApp<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="faq__list" data-faq>
+          <div class="faq__item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-1" id="faq-1-btn"><span>What is the turnaround time for custom tailoring?</span><i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+            <div class="faq__panel" id="faq-1" role="region" aria-labelledby="faq-1-btn"><div><p>Our tailoring process typically takes 15 to 20 days, allowing us to ensure proper fit and quality craftsmanship. For urgent requests, expedited services are available with additional charges.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-2" id="faq-2-btn"><span>Do you offer bespoke wedding attire services?</span><i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+            <div class="faq__panel" id="faq-2" role="region" aria-labelledby="faq-2-btn"><div><p>Yes, we specialise in crafting bespoke wedding attire tailored to your style and preferences. Our team works closely with you to ensure every detail, from fabric selection to design, is perfectly suited for your special day.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-3" id="faq-3-btn"><span>What fabrics do you use for bespoke clothing?</span><i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+            <div class="faq__panel" id="faq-3" role="region" aria-labelledby="faq-3-btn"><div><p>We offer a wide selection of quality fabrics, including viscose blends, wool blends, linen, and premium selections sourced from countries such as Italy, England and Japan. During your consultation, our specialists will guide you in choosing the most suitable fabric based on your style, comfort and budget.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-4" id="faq-4-btn"><span>Do you offer tailoring for women?</span><i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+            <div class="faq__panel" id="faq-4" role="region" aria-labelledby="faq-4-btn"><div><p>Yes, we do. Our master tailor has strong expertise in crafting women's suits. We create elegant, well-fitted pieces tailored to your style and preferences, whether for business, formal occasions or special events.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-5" id="faq-5-btn"><span>Do you tailor for corporate teams?</span><i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+            <div class="faq__panel" id="faq-5" role="region" aria-labelledby="faq-5-btn"><div><p>Yes. From bespoke executive suits and corporate shirts to office uniforms and event attire, every garment is individually tailored. We also measure and fit corporate teams on site across the Klang Valley.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-6" id="faq-6-btn"><span>How does payment work?</span><i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+            <div class="faq__panel" id="faq-6" role="region" aria-labelledby="faq-6-btn"><div><p>A 50% deposit is required when you confirm your order, with the balance payable when you collect your garment.</p></div></div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" aria-expanded="false" aria-controls="faq-7" id="faq-7-btn"><span>Do I need an appointment?</span><i class="ph ph-plus" aria-hidden="true"></i></button></h3>
+            <div class="faq__panel" id="faq-7" role="region" aria-labelledby="faq-7-btn"><div><p>We recommend booking a consultation so a tailor is ready for you. <a href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book online</a>, or message us on WhatsApp.</p></div></div>
           </div>
         </div>
       </section>
@@ -520,112 +583,107 @@
 
         <ul class="garments">
           <li class="garment" data-moments="business weddings occasions">
-            <svg class="garment__art" viewBox="0 0 200 240" aria-hidden="true">
-              <path class="g-draw" d="M78 124 74 236H97L100 150 103 236H126L122 124"/>
-              <path class="g-draw g-dash" d="M86 140V232M114 140V232"/>
-              <g transform="translate(40 2) scale(0.3)" style="--sw:4.6">
-                <path class="g-draw" d="M168 44 92 66C78 72 70 96 68 128L54 336 88 342 100 156"/>
-                <path class="g-draw" d="M232 44 308 66C322 72 330 96 332 128L346 336 312 342 300 156"/>
-                <path class="g-draw" d="M100 156 106 424Q150 432 186 428 198 412 198 392V300"/>
-                <path class="g-draw" d="M300 156 294 424Q250 432 214 428 202 412 202 392V300"/>
-                <path class="g-draw" d="M198 300 150 118 146 98 162 94 176 52 168 44"/>
-                <path class="g-draw" d="M202 300 250 118 254 98 238 94 224 52 232 44"/>
-                <path class="g-draw" d="M168 44Q200 58 232 44"/>
-                <path class="g-draw" d="M118 344 172 340 173 356 119 360Z"/>
-                <path class="g-draw" d="M282 344 228 340 227 356 281 360Z"/>
-                <path class="g-draw" d="M236 198 276 192 277 200 237 206Z"/>
-                <circle class="g-dot" cx="200" cy="318" r="6"/><circle class="g-dot" cx="200" cy="362" r="6"/>
-              </g>
-            </svg>
-            <h3 class="garment__name">Suits</h3>
-            <p class="garment__price">From RM1,100</p>
+            <figure class="garment__media"><img src="collection-suits.jpg" width="896" height="1120" alt="A navy two-piece suit with a white shirt, navy tie and gold crown lapel pin on a tailor's dress form" loading="lazy" decoding="async"></figure>
+            <div class="garment__info">
+              <h3 class="garment__name">Suits</h3>
+              <p class="garment__price">From RM1,100</p>
+            </div>
           </li>
-
           <li class="garment" data-moments="business occasions everyday">
-            <svg class="garment__art" viewBox="0 0 200 240" aria-hidden="true">
-              <g transform="translate(8 6) scale(0.46)" style="--sw:3">
-                <path class="g-draw" d="M168 44 92 66C78 72 70 96 68 128L54 336 88 342 100 156"/>
-                <path class="g-draw" d="M232 44 308 66C322 72 330 96 332 128L346 336 312 342 300 156"/>
-                <path class="g-draw" d="M100 156 106 424Q150 432 186 428 198 412 198 392V300"/>
-                <path class="g-draw" d="M300 156 294 424Q250 432 214 428 202 412 202 392V300"/>
-                <path class="g-draw" d="M198 300 150 118 146 98 162 94 176 52 168 44"/>
-                <path class="g-draw" d="M202 300 250 118 254 98 238 94 224 52 232 44"/>
-                <path class="g-draw" d="M168 44Q200 58 232 44"/>
-                <path class="g-draw" d="M116 330H170V368Q170 376 162 376H124Q116 376 116 368Z"/>
-                <path class="g-draw" d="M284 330H230V368Q230 376 238 376H276Q284 376 284 368Z"/>
-                <path class="g-draw" d="M238 196 270 190 272 222 240 226Z"/>
-                <path class="g-draw" d="M244 196 252 180 262 184 266 191"/>
-                <circle class="g-dot" cx="200" cy="318" r="6"/><circle class="g-dot" cx="200" cy="362" r="6"/>
-              </g>
-            </svg>
-            <h3 class="garment__name">Jackets</h3>
-            <p class="garment__price">Made to measure</p>
+            <figure class="garment__media"><img src="collection-jackets.jpg" width="896" height="1120" alt="A brown herringbone sport jacket with patch pockets and a gold crown lapel pin over a light blue shirt" loading="lazy" decoding="async"></figure>
+            <div class="garment__info">
+              <h3 class="garment__name">Jackets</h3>
+              <p class="garment__price">From RM700</p>
+            </div>
           </li>
-
           <li class="garment" data-moments="business everyday">
-            <svg class="garment__art" viewBox="0 0 200 240" aria-hidden="true">
-              <path class="g-draw" d="M86 26 58 36 34 50 16 124 36 130 50 86 52 224Q100 236 148 224L150 86 164 130 184 124 166 50 142 36 114 26"/>
-              <path class="g-draw" d="M86 26Q100 32 114 26L120 40 104 58 100 50 96 58 80 40Z"/>
-              <path class="g-draw" d="M100 58V230"/>
-              <path class="g-draw" d="M19 114 38 120M181 114 162 120"/>
-              <path class="g-draw" d="M58 36 52 86M142 36 148 86"/>
-              <circle class="g-dot" cx="100" cy="76" r="2.4"/><circle class="g-dot" cx="100" cy="106" r="2.4"/><circle class="g-dot" cx="100" cy="136" r="2.4"/><circle class="g-dot" cx="100" cy="166" r="2.4"/><circle class="g-dot" cx="100" cy="196" r="2.4"/>
-            </svg>
-            <h3 class="garment__name">Shirts</h3>
-            <p class="garment__price">From RM160</p>
+            <figure class="garment__media"><img src="collection-shirts.jpg" width="896" height="1120" alt="A pale blue tailored dress shirt with a spread collar and French cuffs with gold cufflinks" loading="lazy" decoding="async"></figure>
+            <div class="garment__info">
+              <h3 class="garment__name">Shirts</h3>
+              <p class="garment__price">From RM160</p>
+            </div>
           </li>
-
           <li class="garment" data-moments="business everyday">
-            <svg class="garment__art" viewBox="0 0 200 240" aria-hidden="true">
-              <path class="g-draw" d="M62 22H138V36H62Z"/>
-              <path class="g-draw" d="M62 36 54 228H94L100 94 106 228H146L138 36"/>
-              <path class="g-draw" d="M100 36V94"/>
-              <path class="g-draw g-dash" d="M76 48V222M124 48V222"/>
-              <path class="g-draw" d="M66 42 78 68M134 42 122 68"/>
-              <path class="g-draw" d="M78 22V36M122 22V36"/>
-            </svg>
-            <h3 class="garment__name">Trousers</h3>
-            <p class="garment__price">From RM400</p>
+            <figure class="garment__media"><img src="collection-trousers.jpg" width="896" height="1120" alt="Charcoal wool trousers with a sharp front crease on a walnut hanger" loading="lazy" decoding="async"></figure>
+            <div class="garment__info">
+              <h3 class="garment__name">Trousers</h3>
+              <p class="garment__price">From RM400</p>
+            </div>
           </li>
-
           <li class="garment" data-moments="weddings occasions">
-            <svg class="garment__art" viewBox="0 0 200 240" aria-hidden="true">
-              <g transform="translate(8 6) scale(0.46)" style="--sw:3">
-                <path class="g-fill" d="M198 300 150 118 146 98 162 94 176 52Q186 180 198 300Z"/>
-                <path class="g-fill" d="M202 300 250 118 254 98 238 94 224 52Q214 180 202 300Z"/>
-                <path class="g-draw" d="M168 44 92 66C78 72 70 96 68 128L54 336 88 342 100 156"/>
-                <path class="g-draw" d="M232 44 308 66C322 72 330 96 332 128L346 336 312 342 300 156"/>
-                <path class="g-draw" d="M100 156 106 424Q150 432 186 428 198 412 198 392V300"/>
-                <path class="g-draw" d="M300 156 294 424Q250 432 214 428 202 412 202 392V300"/>
-                <path class="g-draw" d="M198 300 150 118 146 98 162 94 176 52 168 44"/>
-                <path class="g-draw" d="M202 300 250 118 254 98 238 94 224 52 232 44"/>
-                <path class="g-draw" d="M168 44Q200 58 232 44"/>
-                <path class="g-draw" d="M178 72 200 82 222 72V94L200 84 178 94Z"/>
-                <path class="g-draw" d="M120 352H170M280 352H230"/>
-                <circle class="g-dot" cx="200" cy="320" r="6"/>
-              </g>
-            </svg>
-            <h3 class="garment__name">Tuxedos</h3>
-            <p class="garment__price">Made to measure</p>
+            <figure class="garment__media"><img src="collection-tuxedos.jpg" width="896" height="1120" alt="A black tuxedo with satin peak lapels, bow tie and gold crown lapel pin, with matching satin-striped trousers" loading="lazy" decoding="async"></figure>
+            <div class="garment__info">
+              <h3 class="garment__name">Tuxedos</h3>
+              <p class="garment__price">From RM1,399</p>
+            </div>
           </li>
-
           <li class="garment" data-moments="business weddings occasions everyday">
-            <svg class="garment__art" viewBox="0 0 200 240" aria-hidden="true">
-              <path class="g-draw" d="M80 26 50 38C42 42 38 54 37 68L26 186 42 190 52 90 58 146Q50 172 54 206Q100 216 146 206Q150 172 142 146L148 90 158 190 174 186 163 68C162 54 158 42 150 38L120 26"/>
-              <path class="g-draw" d="M80 26Q100 34 120 26"/>
-              <path class="g-draw" d="M80 26 72 44 80 46 100 128 120 46 128 44 120 26"/>
-              <path class="g-draw" d="M78 100 76 150M122 100 124 150"/>
-              <path class="g-draw" d="M64 170H88M112 170H136"/>
-              <circle class="g-dot" cx="100" cy="138" r="3"/>
-            </svg>
-            <h3 class="garment__name">Womenswear</h3>
-            <p class="garment__price">Made to measure</p>
+            <figure class="garment__media"><img src="collection-womenswear.jpg" width="896" height="1120" alt="A women's camel double-breasted trouser suit with a gold crown lapel pin on a dress form" loading="lazy" decoding="async"></figure>
+            <div class="garment__info">
+              <h3 class="garment__name">Womenswear</h3>
+              <p class="garment__price">From RM1,100</p>
+            </div>
           </li>
         </ul>
 
         <div class="catalogue__foot">
-          <p class="catalogue__prices">Suits from RM1,100 <span aria-hidden="true">·</span> Shirts from RM160 <span aria-hidden="true">·</span> Trousers from RM400</p>
           <a class="btn btn--ghost btn--lg" href="https://www.instagram.com/masterpiecetailor.my/" target="_blank" rel="noopener">Explore our collection<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+        </div>
+      </section>
+    </div>
+
+    <!-- 6c WORN BY OUR CLIENTS: placeholders for client photos and videos.
+         To add a photo, replace the whole <div class="worn__ph">...</div> with
+           <img src="client-1.jpg" alt="Describe the client and garment" loading="lazy">
+         To add a video (MP4, portrait 9:16, a few seconds, no sound needed), replace it with
+           <video src="client-video-1.mp4" poster="client-video-1.jpg" muted loop playsinline preload="none"></video>
+         Videos play by themselves when on screen; a sound button appears automatically. -->
+    <div class="scene" data-scene="drape" id="worn">
+      <section class="worn" aria-labelledby="worn-title">
+        <header class="worn__head">
+          <h2 class="h2" id="worn-title" data-split>Worn by <span class="gold">our clients</span></h2>
+          <p class="lede">Real clients, real occasions, each in a MasterPiece made for them alone.</p>
+        </header>
+
+        <div class="worn__grid" data-worn>
+          <div class="worn__col">
+            <figure class="worn__item">
+              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
+              <figcaption>Wedding</figcaption>
+            </figure>
+            <figure class="worn__item worn__item--video">
+              <div class="worn__media"><div class="worn__ph"><span class="worn__play" aria-hidden="true"><i class="ph-fill ph-play"></i></span><span>Client video</span></div></div>
+              <figcaption>Fitting day</figcaption>
+            </figure>
+             <figure class="worn__item">
+              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
+              <figcaption>Black tie</figcaption>
+            </figure>
+            <figure class="worn__item">
+              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
+              <figcaption>Business</figcaption>
+            </figure>
+             <figure class="worn__item worn__item--video">
+              <div class="worn__media"><div class="worn__ph"><span class="worn__play" aria-hidden="true"><i class="ph-fill ph-play"></i></span><span>Client video</span></div></div>
+              <figcaption>In the atelier</figcaption>
+            </figure>
+            <figure class="worn__item">
+              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
+              <figcaption>Groom and groomsmen</figcaption>
+            </figure>
+             <figure class="worn__item">
+              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
+              <figcaption>Everyday</figcaption>
+            </figure>
+            <figure class="worn__item worn__item--video">
+              <div class="worn__media"><div class="worn__ph"><span class="worn__play" aria-hidden="true"><i class="ph-fill ph-play"></i></span><span>Client video</span></div></div>
+              <figcaption>The reveal</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="worn__foot">
+          <a class="btn btn--ghost btn--lg" href="https://www.instagram.com/masterpiecetailor.my/" target="_blank" rel="noopener"><i class="ph ph-instagram-logo" aria-hidden="true"></i>See more on Instagram</a>
         </div>
       </section>
     </div>
@@ -746,7 +804,8 @@
             <ul class="footer__list">
               <li><a href="#legacy">Our Story</a></li>
               <li><a href="#journey">Craftsmanship</a></li>
-              <li><a href="https://www.instagram.com/masterpiecetailor.my/" target="_blank" rel="noopener">Insights</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="insights.html">Insights</a></li>
             </ul>
           </div>
 
@@ -777,6 +836,55 @@
     <a class="btn btn--gold" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation</a>
   </div>
 
+  <!-- 10% welcome voucher pop-up (voucher.js). Emails are sent by _worker.js through Brevo. -->
+  <dialog class="voucher" data-voucher aria-labelledby="voucher-title" data-lenis-prevent>
+    <div class="voucher__card">
+      <button class="voucher__close" type="button" data-voucher-close aria-label="Close"><i class="ph ph-x" aria-hidden="true"></i></button>
+      <figure class="voucher__media" aria-hidden="true"><img src="identity-suit.jpg" width="685" height="922" alt="" loading="lazy" decoding="async"></figure>
+      <div class="voucher__body">
+        <div class="voucher__step" data-voucher-step="form">
+          <p class="eyebrow">Welcome to MasterPiece</p>
+          <h2 class="voucher__title" id="voucher-title"><span class="gold">10% off</span> your first MasterPiece</h2>
+          <p class="voucher__text">Leave your email and we'll send your welcome voucher straight to your inbox.</p>
+          <form class="voucher__form" data-voucher-form novalidate>
+            <label class="voucher__label" for="voucher-email">Email address</label>
+            <div class="voucher__field">
+              <input id="voucher-email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" required placeholder="name@example.com" aria-describedby="voucher-error">
+              <button class="btn btn--gold" type="submit"><span>Send my voucher</span><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            </div>
+            <p class="voucher__error" id="voucher-error" data-voucher-error role="alert" hidden></p>
+            <label class="voucher__check"><input type="checkbox" name="consent"><span>Also send me news and offers from MasterPiece. You can unsubscribe at any time.</span></label>
+            <div class="voucher__hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+            <p class="voucher__fine">One voucher per client, on your first order. Read our <a href="privacy.html">privacy notice</a> and <a href="terms.html#voucher">voucher terms</a>.</p>
+          </form>
+          <button class="voucher__skip" type="button" data-voucher-close>No thanks</button>
+        </div>
+
+        <div class="voucher__step voucher__step--done" data-voucher-step="done" hidden>
+          <svg class="voucher__crown" aria-hidden="true"><use href="#crown"/></svg>
+          <h2 class="voucher__title">It's on its <span class="gold">way</span></h2>
+          <p class="voucher__text">We've sent your 10% voucher to <b data-voucher-email></b>. If it isn't in your inbox in a few minutes, check your spam or promotions folder.</p>
+          <p class="voucher__text voucher__note" data-voucher-already hidden>We'd already sent one to this address today, so look for that email.</p>
+          <div class="voucher__actions">
+            <a class="btn btn--gold" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation</a>
+            <button class="btn btn--ghost" type="button" data-voucher-close>Back to the website</button>
+          </div>
+        </div>
+
+        <div class="voucher__step" data-voucher-step="fallback" hidden>
+          <p class="eyebrow">Almost there</p>
+          <h2 class="voucher__title">Claim your <span class="gold">10%</span> on WhatsApp</h2>
+          <p class="voucher__text">We couldn't send the email just now. Message us on WhatsApp and we'll share your welcome voucher straight away.</p>
+          <div class="voucher__actions">
+            <a class="btn btn--gold" data-voucher-wa href="https://wa.me/60174582366" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i>Claim on WhatsApp</a>
+            <button class="btn btn--ghost" type="button" data-voucher-close>Back to the website</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <button class="voucher-tab" type="button" data-voucher-open hidden><svg aria-hidden="true"><use href="#crown"/></svg><span>10% off</span></button>
+
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
@@ -784,5 +892,6 @@
   <script src="charts.js" defer></script>
   <script src="threads.js" defer></script>
   <script src="main.js" defer></script>
+  <script src="voucher.js" defer></script>
 </body>
 </html>

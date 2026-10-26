@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "include": [
+    "/api/*",
+    "/craftsmanship*",
+    "/promotion*",
+    "/corporate*",
+    "/contact*",
+    "/news*",
+    "/career*",
+    "/privacy-policy*"
+  ],
+  "exclude": []
+}
