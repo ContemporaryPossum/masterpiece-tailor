@@ -34,7 +34,9 @@ A static website for MasterPiece Tailor (Kelana Jaya and Cyberjaya): the homepag
 | `insights.html`, `insights.js` | The Insights page, and its filters and search |
 | `voucher.js` | The 10% welcome voucher pop-up |
 | `_worker.js` | The small server part on Cloudflare: emails the voucher through Brevo, and forwards old website addresses |
-| `_routes.json` | Tells Cloudflare to run `_worker.js` only for the voucher and the old addresses (everything else is served as plain files) |
+| `wrangler.jsonc` | Cloudflare Workers settings: runs `_worker.js` only for the voucher and the old addresses; everything else is served as plain files |
+| `.assetsignore` | Keeps `_worker.js`, the README and any zip files from being published as web pages |
+| `_routes.json` | The same routing for a Cloudflare *Pages* project (unused on Workers, harmless to keep) |
 | `styles.css` | All styling: design tokens (navy and brand gold `#F4C251`), layout, responsive rules, reduced-motion fallbacks |
 | `main.js` | Smooth scrolling (Lenis), scroll animations (GSAP), the preloader, nav, menu, FAQ, opening hours. Runs on both pages |
 | `threads.js` | The scroll-animated vector background |
@@ -59,13 +61,12 @@ Suit photos carry the gold crown "logo on suit" pin. **To replace any photo**, s
 
 ## Deploy
 
-1. **GitHub:** open the repository, click **Add file > Upload files**, drag in every file and commit. Files with the same name are replaced; new ones are added. Nothing needs deleting.
-2. **Cloudflare:** **Workers & Pages > Create > Pages > Connect to Git**, pick the repository.
-   - Framework preset: **None**
-   - Build command: *leave empty*
-   - Build output directory: `/`
-3. **Check the preview** on the `*.pages.dev` address Cloudflare gives you.
-4. **Custom domain:** when the client approves, add `www.masterpiecetailor.my` under **Custom domains**. This replaces their current website.
+1. **GitHub:** open the repository, click **Add file > Upload files**, drag in every file (including `.assetsignore` and `wrangler.jsonc`) and commit. Files with the same name are replaced; new ones are added. Only upload the site files, never the `.zip` packages.
+2. **Cloudflare (Workers, the dashboard's default):** **Workers & Pages > Create > Import a repository**, pick the repository and keep the deploy command `npx wrangler deploy`. Every commit to GitHub redeploys automatically.
+3. **Check the preview** on the `*.workers.dev` address Cloudflare gives you.
+4. **Custom domain:** when the client approves, add `www.masterpiecetailor.my` under **Settings > Domains & Routes**. This replaces their current website.
+
+Using a Cloudflare *Pages* project instead also works: framework preset **None**, empty build command, output directory `/`. Pages reads `_routes.json` and ignores `wrangler.jsonc`.
 
 ## Setting up the voucher email (Brevo, free)
 
@@ -86,7 +87,7 @@ Until this is done, the pop-up still works: when the email can't be sent, it off
    | `VOUCHER_NOTIFY_EMAIL` | optional, gets a note each time a voucher is sent |
    | `VOUCHER_FROM_NAME` | optional, defaults to `MasterPiece Tailor` |
 
-6. Redeploy (**Deployments > Retry deployment**) so the settings take effect, then test with your own email.
+6. Settings take effect on the next deployment (any GitHub commit, or **Deployments** in Cloudflare). Then test with your own email. `wrangler.jsonc` sets `keep_vars`, so these settings survive future deployments.
 7. Tell the atelier staff the voucher code, so they can apply 10% when a client quotes it.
 
 If Brevo rejects the key with an "unrecognised IP address" message, open Brevo's **Security > Authorised IPs** and turn the IP restriction off (Cloudflare's servers don't have fixed addresses).
@@ -102,7 +103,7 @@ The "Worn by our clients" section has 8 placeholders in `index.html` (search for
 
 ## Old website addresses
 
-Once the domain points here, these old pages forward automatically (in `_worker.js`): `/craftsmanship` to the journey, `/promotion` to the collection, `/corporate` to Business, `/contact` to Visit us, `/news` to Our story, `/career` to the homepage and `/privacy-policy` to Privacy. `/insights` and its `?post=` article links keep working as they are.
+Once the domain points here, these old pages forward automatically (in `_worker.js`, routed by `wrangler.jsonc`): `/craftsmanship` to the journey, `/promotion` to the collection, `/corporate` to Business, `/contact` to Visit us, `/news` to Our story, `/career` to the homepage and `/privacy-policy` to Privacy. `/insights` and its `?post=` article links keep working as they are.
 
 ## Confirm with the client before going live
 

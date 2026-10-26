@@ -1,0 +1,27 @@
+// Cloudflare Workers settings for masterpiecetailor.my (used by "npx wrangler deploy").
+// The site is plain files; _worker.js only runs for the routes in run_worker_first:
+// the voucher email (/api/voucher) and old website addresses that forward to new ones.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "masterpiece-tailor",
+  "main": "_worker.js",
+  "compatibility_date": "2026-10-19",
+  // Keep the voucher settings added in the Cloudflare dashboard when the site redeploys
+  "keep_vars": true,
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": [
+      "/api/*",
+      "/craftsmanship*",
+      "/promotion*",
+      "/corporate*",
+      "/contact*",
+      "/news*",
+      "/career*",
+      "/privacy-policy*"
+    ]
+  }
+}

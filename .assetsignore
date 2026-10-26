@@ -1,0 +1,8 @@
+# Files that are part of the project but must not be published as web pages
+_worker.js
+_routes.json
+wrangler.jsonc
+README.md
+*.zip
+.git
+.gitignore

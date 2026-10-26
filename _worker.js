@@ -1,12 +1,13 @@
 /*
-  _worker.js - the small server side of masterpiecetailor.my (Cloudflare Pages)
+  _worker.js - the small server side of masterpiecetailor.my (Cloudflare)
 
-  Cloudflare Pages runs this file only for the addresses listed in _routes.json;
-  every other page and image is served straight from the static files. It does two things:
+  Cloudflare runs this file only for the addresses listed in wrangler.jsonc ("run_worker_first",
+  for a Workers project) or _routes.json (for a Pages project); every other page and image is
+  served straight from the static files. It does two things:
     1. POST /api/voucher  emails the 10% welcome voucher through Brevo (brevo.com)
     2. Old website addresses (/craftsmanship, /contact ...) forward to their new homes
 
-  Settings live in Cloudflare: Workers & Pages > this project > Settings > Variables and Secrets
+  Settings live in Cloudflare: Workers & Pages > masterpiece-tailor > Settings > Variables and Secrets
     BREVO_API_KEY         (secret, required)  Brevo > SMTP & API > API keys
     VOUCHER_FROM_EMAIL    (required)          a sender address verified in Brevo, e.g. ask@masterpiecetailor.my
     VOUCHER_FROM_NAME     (optional)          defaults to "MasterPiece Tailor"
