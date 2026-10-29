@@ -5,7 +5,7 @@
   to /api/voucher (see _worker.js), which emails the voucher code through Brevo.
   If that isn't available (not set up yet, offline, or opened as a local file),
   the pop-up offers WhatsApp instead, so a visitor is never left with an error.
-  After "No thanks" a small "10% off" tab stays in the corner to reopen it.
+  After "Maybe later" a small "10% off" tab stays in the corner to reopen it.
 */
 (function () {
   'use strict';
@@ -17,7 +17,7 @@
   var WHATSAPP = '60174582366';
   var KEY = 'mpt-voucher';
   var OPEN_DELAY = 2200;                 // after the page is ready
-  var SNOOZE = 14 * 24 * 3600 * 1000;    // "No thanks" keeps it closed for two weeks
+  var SNOOZE = 14 * 24 * 3600 * 1000;    // "Maybe later" keeps it closed for two weeks
 
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

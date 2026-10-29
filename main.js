@@ -210,7 +210,6 @@
     initSplitHeadings();
     initReveals();
     initIdentity();
-    initPillars();
     initCraft(mm, desktopMotion, mobileMotion);
     initFaqReveal();
     initLegacy();
@@ -218,7 +217,7 @@
     initMarquee();
     initStack(mm, desktopMotion, mobileMotion);
     initCatalogue();
-    initWorn(mm, desktopMotion);
+    initWorn();
     initVoices();
     initRating();
     initFooter();
@@ -305,46 +304,7 @@
     }
   }
 
-  /* ---------- 3 Pillars: each number lights up in turn as the gold line runs through them ---------- */
-  function initPillars() {
-    var list = $('[data-pillars]');
-    if (!list) return;
-    var items = $$('.pillar', list);
-    var lines = items.map(function (p) { return $('.pillar__line', p); });
-    var n = items.length;
-
-    // p runs 0..1 across the list: number i lights at i/n, then its line fills over the next 1/n
-    function paint(p) {
-      items.forEach(function (it, i) {
-        it.classList.toggle('is-on', p > i / n);
-        lines[i].style.setProperty('--p', clamp((p - i / n) * n, 0, 1).toFixed(3));
-      });
-    }
-    if (reduce) { paint(1); return; }
-    paint(0);
-    ScrollTrigger.create({
-      trigger: list, start: 'top 72%', end: 'bottom 62%',
-      onUpdate: function (self) { paint(self.progress); },
-      onRefresh: function (self) { paint(self.progress); }
-    });
-
-    gsap.from('.experience__lead', { y: 24, opacity: 0, duration: 1, ease: 'power3.out', delay: 0.15, scrollTrigger: { trigger: '.experience__lead', start: 'top 90%', once: true } });
-    items.forEach(function (it, i) {
-      var fig = $('.pillar__media', it);
-      var img = $('img', fig);
-      gsap.fromTo(fig, { clipPath: 'inset(0 0 100% 0)' }, {
-        clipPath: 'inset(0 0 0% 0)', duration: 1.3, ease: 'expo.out', delay: i * 0.12,
-        scrollTrigger: { trigger: it, start: 'top 85%', once: true }
-      });
-      gsap.fromTo(img, { scale: 1.22 }, { scale: 1.02, ease: 'none', scrollTrigger: { trigger: fig, start: 'top bottom', end: 'bottom top', scrub: true } });
-      gsap.from(it.querySelectorAll('.pillar__title, .pillar > p'), {
-        y: 24, opacity: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', delay: 0.2 + i * 0.12,
-        scrollTrigger: { trigger: it, start: 'top 82%', once: true }
-      });
-    });
-  }
-
-  /* ---------- 3b Journey: the jacket draws itself across five steps ---------- */
+  /* ---------- 3 Journey: the jacket draws itself across five steps ---------- */
   function initCraft(mm, desktopMotion, mobileMotion) {
     var sec = $('.craft');
     if (!sec) return;
@@ -631,24 +591,21 @@
     });
   }
 
-  /* ---------- 6c Worn by our clients: tiles unveil, columns drift at different speeds ---------- */
-  function initWorn(mm, desktopMotion) {
-    var grid = $('[data-worn]');
-    if (!grid || reduce) return;
-    var items = $$('.worn__item', grid);
-    gsap.set(items, { clipPath: 'inset(0 0 100% 0)', y: 40 });
-    ScrollTrigger.batch(items, {
+  /* ---------- 6c Worn by our clients: filters and film tiles rise in (the lookbook wall is lookbook.js) ---------- */
+  function initWorn() {
+    var films = $$('.films .worn__item');
+    if (reduce || !$('.worn')) return;
+    gsap.from('.looks__filters > *', {
+      y: 18, opacity: 0, duration: 0.7, ease: 'power3.out', stagger: 0.05,
+      scrollTrigger: { trigger: '.looks__filters', start: 'top 92%', once: true }
+    });
+    if (!films.length) return;
+    gsap.set(films, { clipPath: 'inset(0 0 100% 0)', y: 40 });
+    ScrollTrigger.batch(films, {
       start: 'top 92%', once: true,
       onEnter: function (batch) {
         gsap.to(batch, { clipPath: 'inset(0 0 0% 0)', y: 0, duration: 1.2, ease: 'expo.out', stagger: 0.1 });
       }
-    });
-    mm.add(desktopMotion, function () {
-      var speeds = [40, 110, 60, 130];
-      $$('.worn__col', grid).forEach(function (col, i) {
-        var s = speeds[i % speeds.length];
-        gsap.fromTo(col, { y: s }, { y: -s, ease: 'none', scrollTrigger: { trigger: grid, start: 'top bottom', end: 'bottom top', scrub: true } });
-      });
     });
   }
 

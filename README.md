@@ -1,20 +1,20 @@
 # MasterPiece Tailor website
 
-A static website for MasterPiece Tailor (Kelana Jaya and Cyberjaya): the homepage, an Insights page, and Privacy and Terms pages. It is built to the client's wireframe, the v2 content and logo, and the third round of client changes. Plain HTML, CSS and JavaScript with no build step. Every file sits at the top level, so you can drag them straight into GitHub and deploy on Cloudflare Pages.
+A static website for MasterPiece Tailor (Kelana Jaya and Cyberjaya): the homepage, an Insights page, and Privacy and Terms pages. It is built to the client's wireframe, the v2 content and logo, and the later rounds of client changes. Plain HTML, CSS and JavaScript with no build step. Every file sits at the top level, so you can drag them straight into GitHub and deploy on Cloudflare.
 
 ## What's on the homepage
 
 | # | Section | What it does |
 | --- | --- | --- |
-| - | Welcome pop-up | 10% off your first MasterPiece. Visitors enter their email and the voucher is emailed to them (see "Setting up the voucher email"). Shows once, shortly after the page loads. "No thanks" leaves a small "10% off" tab in the corner |
+| - | Welcome pop-up | 10% off your first MasterPiece. Visitors enter their email and the voucher is emailed to them (see "Setting up the voucher email"). Shows once, shortly after the page loads. "Maybe later" leaves a small "10% off" tab in the corner |
 | 1 | Hero + trust crawl | Stacked logo in the nav, "Enquire us" (WhatsApp) top right, "Luxury tailored clothing", Book a consultation. One line of text crawls across: Est. 1998, Top 10 in Malaysia, 20,000+ clients, ★4.9 Google |
 | 2 | Identity | "There is only one **you**". Words light up as you scroll |
-| 3 | Constructing your MasterPiece | One section: three numbered pillars (1 Personal style, 2 Expert guidance, 3 Distinctly yours) with the Fabric Guide photos and a gold line that runs between the numbers. It flows into **Your MasterPiece journey**, five steps: Consultation, Measurement, Fabric selection, Fitting, Delivery. A jacket draws itself as you scroll (pinned on desktop and phones, with tappable steps) |
+| 3 | Your MasterPiece journey | Five steps: Consultation, Measurement, Fabric selection, Fitting, Delivery. A jacket draws itself as you scroll (pinned on desktop and phones, with tappable steps) |
 | 4 | Questions & answers | The FAQ from the old website (turnaround, weddings, fabrics, womenswear) plus corporate orders, payment and appointments |
 | 5 | Heritage + authority | "A legacy of craftsmanship", rolling stats, timeline chart, the "Our story" timeline and Trusted by |
 | 6 | One you. Many moments. | Business, Weddings, Occasions and Everyday cards |
 | 6b | Explore the collection | Six photographs (Suits, Jackets, Shirts, Trousers, Tuxedos, Womenswear), each with a price |
-| 6c | Worn by our clients | Placeholders for 5 client photos and 3 client videos (see "Adding client photos and videos") |
+| 6c | Worn by our clients | The lookbook: 41 client looks as a tilted wall of columns that drift up and down, speed up and reverse with scrolling, and pause under the pointer. Style chips (Black tie, Business, Statement, Weddings, Smart casual) re-deal the wall. Any look opens full screen with arrows, swipe, thumbnails and an "Enquire about this look" WhatsApp button that names the look. Below it, 3 placeholders for client films |
 | 7 | The power of presence | Client stories and the Google rating ring |
 | 8 | Final CTA + footer | Book your complimentary consultation, both ateliers with live opening hours |
 
@@ -33,6 +33,7 @@ A static website for MasterPiece Tailor (Kelana Jaya and Cyberjaya): the homepag
 | `index.html` | The homepage |
 | `insights.html`, `insights.js` | The Insights page, and its filters and search |
 | `voucher.js` | The 10% welcome voucher pop-up |
+| `lookbook.js` | The "Worn by our clients" wall, style chips and full-screen viewer |
 | `_worker.js` | The small server part on Cloudflare: emails the voucher through Brevo, and forwards old website addresses |
 | `wrangler.jsonc` | Cloudflare Workers settings: runs `_worker.js` only for the voucher and the old addresses; everything else is served as plain files |
 | `.assetsignore` | Keeps `_worker.js`, the README and any zip files from being published as web pages |
@@ -53,7 +54,8 @@ A static website for MasterPiece Tailor (Kelana Jaya and Cyberjaya): the homepag
 | --- | --- |
 | `hero-suit.jpg` | Hero |
 | `identity-suit.jpg` | "There is only one you" and the voucher pop-up |
-| `fabric-collection.jpg`, `fabric-glen-check.jpg`, `fabric-herringbone.jpg` | The three pillars (from the Fabric Guide) |
+| `look-01.jpg` to `look-41.jpg` | The client lookbook (from the client's MPT pictures, 800 x 1132) |
+| `fabric-collection.jpg` | The Insights page's link preview picture. `fabric-glen-check.jpg` and `fabric-herringbone.jpg` are spares (the section that used them was removed) |
 | `suit-business.jpg`, `suit-wedding.jpg`, `suit-occasions.jpg`, `shirt-everyday.jpg` | Business, Weddings, Occasions and Everyday cards |
 | `collection-suits.jpg`, `collection-jackets.jpg`, `collection-shirts.jpg`, `collection-trousers.jpg`, `collection-tuxedos.jpg`, `collection-womenswear.jpg` | Explore the collection. AI-generated studio photos, made for this site |
 
@@ -94,12 +96,9 @@ If Brevo rejects the key with an "unrecognised IP address" message, open Brevo's
 
 ## Adding client photos and videos
 
-The "Worn by our clients" section has 8 placeholders in `index.html` (search for `worn__ph`).
-
-- **Photo:** replace a whole `<div class="worn__ph">...</div>` with `<img src="client-1.jpg" alt="A client in a navy MasterPiece suit" loading="lazy">`. Portrait 4:5 works best.
-- **Video:** replace it with `<video src="client-video-1.mp4" poster="client-video-1.jpg" muted loop playsinline preload="none"></video>`. Use short, portrait 9:16 MP4s under about 8 MB each. They play by themselves while on screen, and a sound button appears automatically.
-- Change the caption under each tile (`<figcaption>`) to suit, and upload the new files to GitHub.
-- Only use client photos and videos with the client's consent.
+- **A new look:** in `index.html`, find the `<li class="look" ...>` lines, copy the last one and change its `data-look` (the next number, starting from 0), `data-cat` (`black-tie`, `business`, `statement`, `weddings` or `smart-casual`), `data-cat-label`, `data-title`, the picture (`look-42.jpg`, portrait 800 x 1132) and the look number shown on it. Then update the numbers on the style chips above the wall. The wall, filters and viewer pick it up automatically.
+- **A client film:** the three "Client film" placeholders are under the wall (search for `worn__ph`). Replace a whole `<div class="worn__ph">...</div>` with `<video src="client-video-1.mp4" poster="client-video-1.jpg" muted loop playsinline preload="none"></video>`. Use short, portrait 9:16 MP4s under about 8 MB each. They play by themselves while on screen, and a sound button appears automatically.
+- Upload the new files to GitHub, and only use client photos and videos with the client's consent.
 
 ## Old website addresses
 

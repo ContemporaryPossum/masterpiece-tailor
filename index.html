@@ -148,7 +148,7 @@
       <img class="brand__logo" src="logo.svg" alt="MasterPiece Tailor" width="95" height="69">
     </a>
     <nav class="nav__links" aria-label="Primary">
-      <a href="#experience">Journey</a>
+      <a href="#journey">Journey</a>
       <a href="#faq">FAQ</a>
       <a href="#legacy">Our Story</a>
       <a href="#moments">Collection</a>
@@ -163,7 +163,7 @@
 
   <div class="menu" id="menu" hidden>
     <nav class="menu__links" aria-label="Mobile">
-      <a href="#experience">Journey</a>
+      <a href="#journey">Journey</a>
       <a href="#faq">FAQ</a>
       <a href="#legacy">Our Story</a>
       <a href="#moments">Collection</a>
@@ -233,42 +233,9 @@
       </section>
     </div>
 
-    <!-- 3 CONSTRUCTING YOUR MASTERPIECE: the three pillars, then the five-step journey.
-         One section in two background scenes (folds, then the blueprint grid). -->
-    <div class="scene" data-scene="folds" id="experience">
-      <section class="experience" aria-labelledby="experience-title">
-        <header class="experience__head">
-          <h2 class="h2" id="experience-title" data-split>Constructing your <span class="gold">MasterPiece</span></h2>
-          <p class="experience__lead">It all starts with understanding <span class="gold">you</span>.</p>
-        </header>
-
-        <!-- The gold line runs 1 to 3 and each number lights up as you scroll -->
-        <ol class="pillars" data-pillars>
-          <li class="pillar">
-            <div class="pillar__head" aria-hidden="true"><span class="pillar__num">1</span><span class="pillar__line"></span></div>
-            <figure class="pillar__media"><img src="fabric-collection.jpg" width="1383" height="922" alt="A box of Italian suit fabrics rolled and banded with the MasterPiece monogram" loading="lazy" decoding="async"></figure>
-            <h3 class="pillar__title">Personal style</h3>
-            <p>Discover what works for you.</p>
-          </li>
-          <li class="pillar">
-            <div class="pillar__head" aria-hidden="true"><span class="pillar__num">2</span><span class="pillar__line"></span></div>
-            <figure class="pillar__media"><img src="fabric-glen-check.jpg" width="1383" height="922" alt="Glen check cloth beside a tailored glen check jacket wearing the MasterPiece crown pin" loading="lazy" decoding="async"></figure>
-            <h3 class="pillar__title">Expert guidance</h3>
-            <p>Shaping your vision together.</p>
-          </li>
-          <li class="pillar">
-            <div class="pillar__head" aria-hidden="true"><span class="pillar__num">3</span><span class="pillar__line"></span></div>
-            <figure class="pillar__media"><img src="fabric-herringbone.jpg" width="1383" height="922" alt="Charcoal herringbone cloth beside a three-piece suit wearing the MasterPiece crown pin" loading="lazy" decoding="async"></figure>
-            <h3 class="pillar__title">Distinctly yours</h3>
-            <p>Created for you alone.</p>
-          </li>
-        </ol>
-      </section>
-    </div>
-
-    <!-- 3b YOUR MASTERPIECE JOURNEY: the jacket draws itself across five steps (pinned) -->
+    <!-- 3 YOUR MASTERPIECE JOURNEY: the jacket draws itself across five steps (pinned) -->
     <div class="scene" data-scene="grid" id="journey">
-      <div class="craft" role="region" aria-labelledby="journey-title">
+      <section class="craft" aria-labelledby="journey-title">
         <div class="craft__inner">
           <figure class="craft__drawing" aria-hidden="true">
             <svg class="jacket" viewBox="-40 0 480 470">
@@ -354,7 +321,7 @@
           </figure>
 
           <div class="craft__copy">
-            <h3 class="h2 craft__title" id="journey-title" data-split>Your MasterPiece journey</h3>
+            <h2 class="h2 craft__title" id="journey-title" data-split>Your MasterPiece journey</h2>
             <p class="craft__kicker">The Creation of Your MasterPiece in <strong>FIVE</strong> simple steps, ready in 15 to 20 days.</p>
             <ol class="craft__steps">
               <li class="is-active"><button type="button" data-step="0"><span class="craft__num">01</span>Consultation</button></li>
@@ -373,7 +340,7 @@
             <a class="btn btn--gold btn--lg magnetic craft__cta" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation<i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
           </div>
         </div>
-      </div>
+      </section>
     </div>
 
     <!-- 4 QUESTIONS AND ANSWERS (from the client's previous website) -->
@@ -632,51 +599,96 @@
       </section>
     </div>
 
-    <!-- 6c WORN BY OUR CLIENTS: placeholders for client photos and videos.
-         To add a photo, replace the whole <div class="worn__ph">...</div> with
-           <img src="client-1.jpg" alt="Describe the client and garment" loading="lazy">
-         To add a video (MP4, portrait 9:16, a few seconds, no sound needed), replace it with
-           <video src="client-video-1.mp4" poster="client-video-1.jpg" muted loop playsinline preload="none"></video>
-         Videos play by themselves when on screen; a sound button appears automatically. -->
+    <!-- 6c WORN BY OUR CLIENTS: the lookbook (lookbook.js).
+         41 client looks become a slow-moving wall of columns that drift up and down, speed up with
+         scrolling and pause under the pointer. The chips re-deal the wall by style, and any look opens
+         full screen with an "Enquire about this look" WhatsApp button.
+         To add a look: copy one <li class="look"> line, give it the next data-look number and a new
+         look-NN.jpg (portrait, 800 x 1132), and update the counts on the chips.
+         Client films: replace a <div class="worn__ph">...</div> with
+           <video src="client-video-1.mp4" poster="client-video-1.jpg" muted loop playsinline preload="none"></video> -->
     <div class="scene" data-scene="drape" id="worn">
       <section class="worn" aria-labelledby="worn-title">
         <header class="worn__head">
-          <h2 class="h2" id="worn-title" data-split>Worn by <span class="gold">our clients</span></h2>
-          <p class="lede">Real clients, real occasions, each in a MasterPiece made for them alone.</p>
+          <div>
+            <p class="eyebrow">The MasterPiece lookbook</p>
+            <h2 class="h2" id="worn-title" data-split>Worn by <span class="gold">our clients</span></h2>
+          </div>
+          <p class="lede">41 clients, 41 MasterPieces, each cut for one person alone. Tap any look to see it up close.</p>
         </header>
 
-        <div class="worn__grid" data-worn>
-          <div class="worn__col">
-            <figure class="worn__item">
-              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
-              <figcaption>Wedding</figcaption>
-            </figure>
+        <div class="looks__filters" role="group" aria-label="Show looks by style">
+          <button type="button" class="chip" data-look-filter="all" aria-pressed="true">All looks <span>41</span></button>
+          <button type="button" class="chip" data-look-filter="black-tie" aria-pressed="false">Black tie <span>14</span></button>
+          <button type="button" class="chip" data-look-filter="business" aria-pressed="false">Business <span>12</span></button>
+          <button type="button" class="chip" data-look-filter="statement" aria-pressed="false">Statement <span>7</span></button>
+          <button type="button" class="chip" data-look-filter="weddings" aria-pressed="false">Weddings <span>4</span></button>
+          <button type="button" class="chip" data-look-filter="smart-casual" aria-pressed="false">Smart casual <span>4</span></button>
+        </div>
+
+        <div class="looks" data-looks>
+          <ul class="looks__list" data-looks-list>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Charcoal double-breasted suit"><button type="button" class="look__btn" data-look="0" aria-label="Look 01, Charcoal double-breasted suit. Open full screen"><img src="look-01.jpg" width="800" height="1132" alt="A client in a charcoal double-breasted suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>01</b> Business</span></button></li>
+          <li class="look" data-cat="statement" data-cat-label="Statement" data-title="Sky-blue two-piece suit"><button type="button" class="look__btn" data-look="1" aria-label="Look 02, Sky-blue two-piece suit. Open full screen"><img src="look-02.jpg" width="800" height="1132" alt="A client in a sky-blue two-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>02</b> Statement</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Black shawl-lapel tuxedo"><button type="button" class="look__btn" data-look="2" aria-label="Look 03, Black shawl-lapel tuxedo. Open full screen"><img src="look-03.jpg" width="800" height="1132" alt="A client in a black shawl-lapel tuxedo by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>03</b> Black tie</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Sand tuxedo with black peak lapels"><button type="button" class="look__btn" data-look="3" aria-label="Look 04, Sand tuxedo with black peak lapels. Open full screen"><img src="look-04.jpg" width="800" height="1132" alt="A client in a sand tuxedo with black peak lapels by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>04</b> Black tie</span></button></li>
+          <li class="look" data-cat="smart-casual" data-cat-label="Smart casual" data-title="Grey suit worn open-collar"><button type="button" class="look__btn" data-look="4" aria-label="Look 05, Grey suit worn open-collar. Open full screen"><img src="look-05.jpg" width="800" height="1132" alt="A client in a grey suit worn open-collar by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>05</b> Smart casual</span></button></li>
+          <li class="look" data-cat="weddings" data-cat-label="Weddings" data-title="Ivory double-breasted suit"><button type="button" class="look__btn" data-look="5" aria-label="Look 06, Ivory double-breasted suit. Open full screen"><img src="look-06.jpg" width="800" height="1132" alt="A client in a ivory double-breasted suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>06</b> Weddings</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Midnight-blue shawl tuxedo"><button type="button" class="look__btn" data-look="6" aria-label="Look 07, Midnight-blue shawl tuxedo. Open full screen"><img src="look-07.jpg" width="800" height="1132" alt="A client in a midnight-blue shawl tuxedo by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>07</b> Black tie</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Navy three-piece suit"><button type="button" class="look__btn" data-look="7" aria-label="Look 08, Navy three-piece suit. Open full screen"><img src="look-08.jpg" width="800" height="1132" alt="A client in a navy three-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>08</b> Business</span></button></li>
+          <li class="look" data-cat="statement" data-cat-label="Statement" data-title="Royal-blue jacquard double-breasted suit"><button type="button" class="look__btn" data-look="8" aria-label="Look 09, Royal-blue jacquard double-breasted suit. Open full screen"><img src="look-09.jpg" width="800" height="1132" alt="A client in a royal-blue jacquard double-breasted suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>09</b> Statement</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Navy dinner suit with bow tie"><button type="button" class="look__btn" data-look="9" aria-label="Look 10, Navy dinner suit with bow tie. Open full screen"><img src="look-10.jpg" width="800" height="1132" alt="A client in a navy dinner suit with bow tie by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>10</b> Black tie</span></button></li>
+          <li class="look" data-cat="statement" data-cat-label="Statement" data-title="Cream pinstripe suit"><button type="button" class="look__btn" data-look="10" aria-label="Look 11, Cream pinstripe suit. Open full screen"><img src="look-11.jpg" width="800" height="1132" alt="A client in a cream pinstripe suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>11</b> Statement</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Steel-blue double-breasted suit"><button type="button" class="look__btn" data-look="11" aria-label="Look 12, Steel-blue double-breasted suit. Open full screen"><img src="look-12.jpg" width="800" height="1132" alt="A client in a steel-blue double-breasted suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>12</b> Business</span></button></li>
+          <li class="look" data-cat="statement" data-cat-label="Statement" data-title="Green double-breasted waistcoat and trousers"><button type="button" class="look__btn" data-look="12" aria-label="Look 13, Green double-breasted waistcoat and trousers. Open full screen"><img src="look-13.jpg" width="800" height="1132" alt="A client in a green double-breasted waistcoat and trousers by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>13</b> Statement</span></button></li>
+          <li class="look" data-cat="weddings" data-cat-label="Weddings" data-title="Grey suit with a blush bow tie"><button type="button" class="look__btn" data-look="13" aria-label="Look 14, Grey suit with a blush bow tie. Open full screen"><img src="look-14.jpg" width="800" height="1132" alt="A client in a grey suit with a blush bow tie by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>14</b> Weddings</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Black three-piece suit"><button type="button" class="look__btn" data-look="14" aria-label="Look 15, Black three-piece suit. Open full screen"><img src="look-15.jpg" width="800" height="1132" alt="A client in a black three-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>15</b> Business</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Black shawl tuxedo with pocket square"><button type="button" class="look__btn" data-look="15" aria-label="Look 16, Black shawl tuxedo with pocket square. Open full screen"><img src="look-16.jpg" width="800" height="1132" alt="A client in a black shawl tuxedo with pocket square by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>16</b> Black tie</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Black satin-lapel tuxedo"><button type="button" class="look__btn" data-look="16" aria-label="Look 17, Black satin-lapel tuxedo. Open full screen"><img src="look-17.jpg" width="800" height="1132" alt="A client in a black satin-lapel tuxedo by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>17</b> Black tie</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Brown three-piece suit"><button type="button" class="look__btn" data-look="17" aria-label="Look 18, Brown three-piece suit. Open full screen"><img src="look-18.jpg" width="800" height="1132" alt="A client in a brown three-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>18</b> Business</span></button></li>
+          <li class="look" data-cat="weddings" data-cat-label="Weddings" data-title="Sand two-piece suit"><button type="button" class="look__btn" data-look="18" aria-label="Look 19, Sand two-piece suit. Open full screen"><img src="look-19.jpg" width="800" height="1132" alt="A client in a sand two-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>19</b> Weddings</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Ivory dinner jacket"><button type="button" class="look__btn" data-look="19" aria-label="Look 20, Ivory dinner jacket. Open full screen"><img src="look-20.jpg" width="800" height="1132" alt="A client in a ivory dinner jacket by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>20</b> Black tie</span></button></li>
+          <li class="look" data-cat="smart-casual" data-cat-label="Smart casual" data-title="Navy suit worn open-collar"><button type="button" class="look__btn" data-look="20" aria-label="Look 21, Navy suit worn open-collar. Open full screen"><img src="look-21.jpg" width="800" height="1132" alt="A client in a navy suit worn open-collar by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>21</b> Smart casual</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Grey tweed three-piece with velvet collar"><button type="button" class="look__btn" data-look="21" aria-label="Look 22, Grey tweed three-piece with velvet collar. Open full screen"><img src="look-22.jpg" width="800" height="1132" alt="A client in a grey tweed three-piece with velvet collar by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>22</b> Business</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Black tuxedo with red pocket square"><button type="button" class="look__btn" data-look="22" aria-label="Look 23, Black tuxedo with red pocket square. Open full screen"><img src="look-23.jpg" width="800" height="1132" alt="A client in a black tuxedo with red pocket square by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>23</b> Black tie</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Classic black shawl tuxedo"><button type="button" class="look__btn" data-look="23" aria-label="Look 24, Classic black shawl tuxedo. Open full screen"><img src="look-24.jpg" width="800" height="1132" alt="A client in a classic black shawl tuxedo by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>24</b> Black tie</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Slate-navy three-piece suit"><button type="button" class="look__btn" data-look="24" aria-label="Look 25, Slate-navy three-piece suit. Open full screen"><img src="look-25.jpg" width="800" height="1132" alt="A client in a slate-navy three-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>25</b> Business</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Brown pinstripe suit"><button type="button" class="look__btn" data-look="25" aria-label="Look 26, Brown pinstripe suit. Open full screen"><img src="look-26.jpg" width="800" height="1132" alt="A client in a brown pinstripe suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>26</b> Business</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Tobacco pinstripe suit"><button type="button" class="look__btn" data-look="26" aria-label="Look 27, Tobacco pinstripe suit. Open full screen"><img src="look-27.jpg" width="800" height="1132" alt="A client in a tobacco pinstripe suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>27</b> Business</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Black peak-lapel tuxedo"><button type="button" class="look__btn" data-look="27" aria-label="Look 28, Black peak-lapel tuxedo. Open full screen"><img src="look-28.jpg" width="800" height="1132" alt="A client in a black peak-lapel tuxedo by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>28</b> Black tie</span></button></li>
+          <li class="look" data-cat="statement" data-cat-label="Statement" data-title="Forest-green double-breasted suit"><button type="button" class="look__btn" data-look="28" aria-label="Look 29, Forest-green double-breasted suit. Open full screen"><img src="look-29.jpg" width="800" height="1132" alt="A client in a forest-green double-breasted suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>29</b> Statement</span></button></li>
+          <li class="look" data-cat="smart-casual" data-cat-label="Smart casual" data-title="Burgundy check sport jacket"><button type="button" class="look__btn" data-look="29" aria-label="Look 30, Burgundy check sport jacket. Open full screen"><img src="look-30.jpg" width="800" height="1132" alt="A client in a burgundy check sport jacket by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>30</b> Smart casual</span></button></li>
+          <li class="look" data-cat="statement" data-cat-label="Statement" data-title="Blush-pink three-piece suit"><button type="button" class="look__btn" data-look="30" aria-label="Look 31, Blush-pink three-piece suit. Open full screen"><img src="look-31.jpg" width="800" height="1132" alt="A client in a blush-pink three-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>31</b> Statement</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Black double-breasted tuxedo"><button type="button" class="look__btn" data-look="31" aria-label="Look 32, Black double-breasted tuxedo. Open full screen"><img src="look-32.jpg" width="800" height="1132" alt="A client in a black double-breasted tuxedo by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>32</b> Black tie</span></button></li>
+          <li class="look" data-cat="smart-casual" data-cat-label="Smart casual" data-title="Grey check suit with black shirt"><button type="button" class="look__btn" data-look="32" aria-label="Look 33, Grey check suit with black shirt. Open full screen"><img src="look-33.jpg" width="800" height="1132" alt="A client in a grey check suit with black shirt by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>33</b> Smart casual</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Navy two-piece suit"><button type="button" class="look__btn" data-look="33" aria-label="Look 34, Navy two-piece suit. Open full screen"><img src="look-34.jpg" width="800" height="1132" alt="A client in a navy two-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>34</b> Business</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Olive three-piece suit"><button type="button" class="look__btn" data-look="34" aria-label="Look 35, Olive three-piece suit. Open full screen"><img src="look-35.jpg" width="800" height="1132" alt="A client in a olive three-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>35</b> Business</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Black suit with bow tie"><button type="button" class="look__btn" data-look="35" aria-label="Look 36, Black suit with bow tie. Open full screen"><img src="look-36.jpg" width="800" height="1132" alt="A client in a black suit with bow tie by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>36</b> Black tie</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Black double-breasted dinner suit"><button type="button" class="look__btn" data-look="36" aria-label="Look 37, Black double-breasted dinner suit. Open full screen"><img src="look-37.jpg" width="800" height="1132" alt="A client in a black double-breasted dinner suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>37</b> Black tie</span></button></li>
+          <li class="look" data-cat="business" data-cat-label="Business" data-title="Charcoal suit with burgundy tie"><button type="button" class="look__btn" data-look="37" aria-label="Look 38, Charcoal suit with burgundy tie. Open full screen"><img src="look-38.jpg" width="800" height="1132" alt="A client in a charcoal suit with burgundy tie by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>38</b> Business</span></button></li>
+          <li class="look" data-cat="black-tie" data-cat-label="Black tie" data-title="Burgundy shawl-lapel tuxedo"><button type="button" class="look__btn" data-look="38" aria-label="Look 39, Burgundy shawl-lapel tuxedo. Open full screen"><img src="look-39.jpg" width="800" height="1132" alt="A client in a burgundy shawl-lapel tuxedo by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>39</b> Black tie</span></button></li>
+          <li class="look" data-cat="statement" data-cat-label="Statement" data-title="Blue windowpane-check suit"><button type="button" class="look__btn" data-look="39" aria-label="Look 40, Blue windowpane-check suit. Open full screen"><img src="look-40.jpg" width="800" height="1132" alt="A client in a blue windowpane-check suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>40</b> Statement</span></button></li>
+          <li class="look" data-cat="weddings" data-cat-label="Weddings" data-title="Sand three-piece suit"><button type="button" class="look__btn" data-look="40" aria-label="Look 41, Sand three-piece suit. Open full screen"><img src="look-41.jpg" width="800" height="1132" alt="A client in a sand three-piece suit by MasterPiece" loading="lazy" decoding="async"><span class="look__tag"><b>41</b> Weddings</span></button></li>
+          </ul>
+          <p class="looks__hint" aria-hidden="true"><i class="ph ph-hand-pointing"></i>Tap a look to see it up close</p>
+        </div>
+
+        <div class="films">
+          <div class="films__head">
+            <p class="eyebrow">On film</p>
+            <p class="films__note">Client films are coming soon.</p>
+          </div>
+          <div class="films__row">
             <figure class="worn__item worn__item--video">
-              <div class="worn__media"><div class="worn__ph"><span class="worn__play" aria-hidden="true"><i class="ph-fill ph-play"></i></span><span>Client video</span></div></div>
+              <div class="worn__media"><div class="worn__ph"><span class="worn__play" aria-hidden="true"><i class="ph-fill ph-play"></i></span><span>Client film</span></div></div>
               <figcaption>Fitting day</figcaption>
             </figure>
-             <figure class="worn__item">
-              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
-              <figcaption>Black tie</figcaption>
-            </figure>
-            <figure class="worn__item">
-              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
-              <figcaption>Business</figcaption>
-            </figure>
-             <figure class="worn__item worn__item--video">
-              <div class="worn__media"><div class="worn__ph"><span class="worn__play" aria-hidden="true"><i class="ph-fill ph-play"></i></span><span>Client video</span></div></div>
+            <figure class="worn__item worn__item--video">
+              <div class="worn__media"><div class="worn__ph"><span class="worn__play" aria-hidden="true"><i class="ph-fill ph-play"></i></span><span>Client film</span></div></div>
               <figcaption>In the atelier</figcaption>
             </figure>
-            <figure class="worn__item">
-              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
-              <figcaption>Groom and groomsmen</figcaption>
-            </figure>
-             <figure class="worn__item">
-              <div class="worn__media"><div class="worn__ph"><svg class="worn__crown" aria-hidden="true"><use href="#crown"/></svg><span>Client photo</span></div></div>
-              <figcaption>Everyday</figcaption>
-            </figure>
             <figure class="worn__item worn__item--video">
-              <div class="worn__media"><div class="worn__ph"><span class="worn__play" aria-hidden="true"><i class="ph-fill ph-play"></i></span><span>Client video</span></div></div>
+              <div class="worn__media"><div class="worn__ph"><span class="worn__play" aria-hidden="true"><i class="ph-fill ph-play"></i></span><span>Client film</span></div></div>
               <figcaption>The reveal</figcaption>
             </figure>
           </div>
@@ -836,6 +848,29 @@
     <a class="btn btn--gold" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation</a>
   </div>
 
+  <!-- Full-screen lookbook viewer (lookbook.js) -->
+  <dialog class="lightbox" data-lightbox aria-labelledby="lb-title" data-lenis-prevent>
+    <div class="lightbox__inner">
+      <div class="lightbox__stage" data-lb-stage>
+        <img class="lightbox__img" data-lb-img src="look-01.jpg" width="800" height="1132" alt="">
+        <button class="lightbox__nav lightbox__nav--prev" type="button" data-lb-prev aria-label="Previous look"><i class="ph ph-arrow-left" aria-hidden="true"></i></button>
+        <button class="lightbox__nav lightbox__nav--next" type="button" data-lb-next aria-label="Next look"><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+      </div>
+      <div class="lightbox__info">
+        <p class="lightbox__count" aria-live="polite"><b data-lb-pos>01</b><span> / </span><span data-lb-total>41</span></p>
+        <p class="eyebrow" data-lb-cat>Look 01 · Business</p>
+        <h2 class="lightbox__title" id="lb-title" data-lb-title>Charcoal double-breasted suit</h2>
+        <p class="lightbox__text">Like this look? Our tailors can make it in your own measurements, fabric and details.</p>
+        <div class="lightbox__actions">
+          <a class="btn btn--gold" data-lb-enquire href="https://wa.me/60174582366" target="_blank" rel="noopener"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i>Enquire about this look</a>
+          <a class="btn btn--ghost" href="https://book.masterpiecetailor.my" target="_blank" rel="noopener">Book a consultation</a>
+        </div>
+        <div class="lightbox__rail" data-lb-rail aria-label="All looks"></div>
+      </div>
+      <button class="lightbox__close" type="button" data-lb-close aria-label="Close the lookbook"><i class="ph ph-x" aria-hidden="true"></i></button>
+    </div>
+  </dialog>
+
   <!-- 10% welcome voucher pop-up (voucher.js). Emails are sent by _worker.js through Brevo. -->
   <dialog class="voucher" data-voucher aria-labelledby="voucher-title" data-lenis-prevent>
     <div class="voucher__card">
@@ -857,7 +892,7 @@
             <div class="voucher__hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
             <p class="voucher__fine">One voucher per client, on your first order. Read our <a href="privacy.html">privacy notice</a> and <a href="terms.html#voucher">voucher terms</a>.</p>
           </form>
-          <button class="voucher__skip" type="button" data-voucher-close>No thanks</button>
+          <button class="voucher__skip" type="button" data-voucher-close>Maybe later</button>
         </div>
 
         <div class="voucher__step voucher__step--done" data-voucher-step="done" hidden>
@@ -892,6 +927,7 @@
   <script src="charts.js" defer></script>
   <script src="threads.js" defer></script>
   <script src="main.js" defer></script>
+  <script src="lookbook.js" defer></script>
   <script src="voucher.js" defer></script>
 </body>
 </html>
